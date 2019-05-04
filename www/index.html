@@ -23,8 +23,29 @@
 	</head>
 
     <body style=" overflow: hidden;">      
-       
-    	<div style="position:absolute;left:0px;top:0px;height:100%;width:100%; ">
+       <div style="background: url(fadeH.png) no-repeat; width: 100%;height: 70%;background-position: cover; position:absolute;left:0px;top: 0px;"></div>
+       <div id="firstStep" style="display: none;position:absolute;left:0px;top:0px;height:100%;width:100%;">
+                <div style="position: relative;">
+                    <div id="" style="position:absolute;left:0px;top:0px;height:20%;width:100%;">
+                        <table width="100%" style="margin-top:25px;">
+                            <tr>
+                                    <td width="25%" align="center" valign="center">
+                                        <img src="menu.png" width="50">
+                                    </td>
+                                    <td width="50%" align="center" valign="center">
+                                         <label Style="color:#6B5A5F;font-size:20px;font-family:aBold;line-height:0.6;">Easy ScreenShots <br> <span style="color:#95A3CF;font-size:18px;font-family:aBold;">Websites</span></label>
+                                    </td>
+                                    <td width="25%" align="center" valign="bottom">
+                                        <img src="avatar.png" width="40">
+                                    </td>
+                            </tr>
+                        </table>
+
+                        
+                    </div>     
+                </div>
+       </div>
+    	<div style="position:absolute;left:0px;top:0px;height:100%;width:100%;" id="loadingPage">
     		<table width="100%" height="100%">
     				<tr>
     						<td valign="center" align="center">
@@ -43,7 +64,10 @@
     	</div>
     		
     <script>
-            //setTimeout(function(){ window.top.location='blank.html'; },5000);
+            setTimeout(function(){ 
+                $("#loadingPage").fadeOut();
+                $("#firstStep").fadeIn();
+            },5000);
     </script>   
     <script type="text/javascript">
         app.initialize();
