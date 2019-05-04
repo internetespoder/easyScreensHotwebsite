@@ -18,32 +18,56 @@
         @font-face {  font-family: 'aBold';src: url('fonts/Avance/Avance Bold.ttf'); }
         @font-face {  font-family: 'aRegular';src: url('fonts/Avance/Avance Regular.ttf'); }
         @font-face {  font-family: 'aItalic';src: url('fonts/Avance/Avance Regular Italic.otf'); }
+        
         </style>  
 	  <script type="text/javascript" src="cordova.js"></script>
 	</head>
 
     <body style=" overflow: hidden;">      
-       <div style="background: url(fadeH.png) no-repeat; width: 100%;height: 70%;background-position: cover; position:absolute;left:0px;top: 0px;"></div>
+       <div style="background: url(fadeH.png) no-repeat; width: 100%;height: 60%;background-position: cover; position:absolute;left:0px;top: 0px;"></div>
        <div id="firstStep" style="display: none;position:absolute;left:0px;top:0px;height:100%;width:100%;">
-                <div style="position: relative;">
-                    <div id="" style="position:absolute;left:0px;top:0px;height:20%;width:100%;">
-                        <table width="100%" style="margin-top:25px;">
-                            <tr>
-                                    <td width="25%" align="center" valign="center">
-                                        <img src="menu.png" width="50">
+               
+                    <div id="header" style="position:absolute;left:0px;top:0px;height:20%;width:100%;">
+                       <table width="100%" style="margin-top:25px;">
+                            <tbody><tr>
+                               <td width="10%" align="left" valign="center"></td>     
+                                    <td width="55%" align="left" valign="center">
+                    <label style="color:#6B5A5F;font-size:25px;font-family:aBold;line-height:0.9;">Easy ScreenShots <br> <span style="color:#95A3CF;font-size:23px;font-family:aBold;">Websites</span>
+                                    
+                                </td>
+                                    <td width="20%" align="right" valign="bottom">
+                                        <img src="icon.png" width="60">
                                     </td>
-                                    <td width="50%" align="center" valign="center">
-                                         <label Style="color:#6B5A5F;font-size:20px;font-family:aBold;line-height:0.6;">Easy ScreenShots <br> <span style="color:#95A3CF;font-size:18px;font-family:aBold;">Websites</span></label>
-                                    </td>
-                                    <td width="25%" align="center" valign="bottom">
-                                        <img src="avatar.png" width="40">
-                                    </td>
+                                    <td width="10%" align="left" valign="center"></td>
                             </tr>
-                        </table>
+                               
+                        </tbody></table>
 
                         
-                    </div>     
-                </div>
+                    </div>   
+                    <div style="position:absolute;left:0px;top:20%;height:80%;width:100%;" align="center">
+                        <table width="80%" height="100%">
+                            <tr>
+                                    <td valign="center" align="center">
+                                        <div align="left"><label style="color:#6B5A5F;font-size:20px;font-family:aRegular;line-height:0.9;cursor: pointer;"> Please write the name of website</label></div>
+                                      <input id="domain" class="form-control" style="font-family:aRegular;text-align: center; height: 60px;font-size: 28px;" placeholder="www.mywebsite.com" >
+                                      <div style="margin-top:15px;background-color: #95A3CF; width: 200px;height: 40px;padding:5px;cursor: pointer;" class="shadowButton" onclick="step(1);">
+                                           <table width="100%" height="100%">
+                                               <tr>
+                                                    <td valign="center" align="center">
+                                                        <label style="color:white;font-size:30px;font-family:aBold;line-height:0.9;cursor: pointer;">Next 
+                                           </label>             
+                                                    </td>
+                                               </tr>
+                                           </table>
+                                           
+                                      </div>
+                                    </td>
+                            </tr>
+
+                        </table>
+                    </div>  
+                
        </div>
     	<div style="position:absolute;left:0px;top:0px;height:100%;width:100%;" id="loadingPage">
     		<table width="100%" height="100%">
@@ -64,10 +88,33 @@
     	</div>
     		
     <script>
+  
+    
+    function validURL(str) {
+  var pattern = new RegExp('^(https?:\\/\\/)?'+ // protocol
+    '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|'+ // domain name
+    '((\\d{1,3}\\.){3}\\d{1,3}))'+ // OR ip (v4) address
+    '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*'+ // port and path
+    '(\\?[;&a-z\\d%_.~+=-]*)?'+ // query string
+    '(\\#[-a-z\\d_]*)?$','i'); // fragment locator
+  return !!pattern.test(str);
+} 
+    function step(id){
+        if(id==1){
+            domain=$("#domain").val();
+            splitDomain=domain.split("/");
+            theDomain=splitDomain[0];
+            if(validURL(theDomain)!=false){
+                alert("continue");
+            }else{
+                alert("invalid host");
+            }
+        }
+    }
             setTimeout(function(){ 
                 $("#loadingPage").fadeOut();
                 $("#firstStep").fadeIn();
-            },5000);
+            },1000);
     </script>   
     <script type="text/javascript">
         app.initialize();
