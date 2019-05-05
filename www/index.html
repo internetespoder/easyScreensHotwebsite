@@ -35,7 +35,7 @@
 
                                 </td>
                                     <td width="20%" align="right" valign="bottom">
-                                        <img src="icon.png" width="60" onclick="onBackKeyDown();">
+                                        <img src="icon.png" width="60" onclick="step(0);">
                                     </td>
                                     <td width="10%" align="left" valign="center"></td>
                             </tr>
@@ -316,6 +316,7 @@
 
     function defaultValues(){
         $("#width").val("1200");
+        $("#wait").val("0");
         $("#height").val("0");
         $("#sQuality option:selected").val(80);
         $("#headers").val("");
@@ -326,6 +327,7 @@
     }
     function saveSettings(){
       width=$("#width").val();
+      wait=$("#wait").val();
       height=$("#height").val();
       quality=$("#sQuality option:selected").val();
       headers=$("#headers").val();
@@ -374,7 +376,7 @@
 
       if(specialSettings){
         $("#withChanges").fadeIn();
-          strParams="&height="+height+"&width="+width+"&full_page="+full_page+"&quality="+quality+"&headers="+str1+"&cookies="+str2+"&response_type=image";
+          strParams="&height="+height+"&width="+width+"&full_page="+full_page+"&wait_for="+wait+"&quality="+quality+"&headers="+str1+"&cookies="+str2+"&response_type=image";
       }
       step(1);
     }
@@ -447,7 +449,7 @@ function emptyStep(){
             if(validURL(theDomain)!=false){
                 $("#firstStep").fadeOut();
                 $("#secondStep").fadeIn();
-                $("#nameWebsite").html(currentNameWebsite);
+                (currentNameWebsite.length > 30) ? $("#nameWebsite").html("<a title='"+currentNameWebsite+"'  onclick=\"alert('"+currentNameWebsite+"');\">"+currentNameWebsite.substring(0,30)+"..</a>")                : $("#nameWebsite").html(currentNameWebsite);
 
             }else{
                 alert("Please write a correct name of website");
@@ -458,11 +460,15 @@ function emptyStep(){
 
           $("#fetching").fadeIn();
           if(!cancelScreen)    {
-
+            $("#responseImage").attr("src","");
+            $("#responseImage").css("display","none");
             $.post("https://internetespoder.com/apps/easyscreenshotswebsite/cdn/core.php",{site:currentNameWebsite, params:strParams}).done(function(data){
               $("#responseImage").attr("src",data);
-            
-              setTimeout(function(){  step(3);},2000);
+
+              setTimeout(function(){
+                step(3);
+                $("#responseImage").fadeIn(); },5000);
+
             });
 
               cancelScreen=false;
