@@ -223,7 +223,16 @@
     document.addEventListener("backbutton", onBackKeyDown, false);
 
     function onBackKeyDown() {
-      alert("back");
+      $("#firstStep").css("display","none");
+      $("#secondStep").css("display","none");
+      $("#fetching").css("display","none");
+      $("#thirdStep").css("display","none");
+      $("#firstStep").css("display","none");
+      $("#firstStep").css("display","none");
+
+      if(currentStep==0)      step(0);
+      if(currentStep==3)      step(1);
+      if(currentStep==2)      step(0);
     }
     function validURL(str) {
   var pattern = new RegExp('^(https?:\\/\\/)?'+ // protocol
@@ -235,8 +244,11 @@
   return !!pattern.test(str);
 }
 var currentNameWebsite;
+var currentStep=0;
     function step(id){
+      currentStep=id;
        if(id==0){
+         $("#firstStep").fadeIn();
        }
         if(id==1){
 
