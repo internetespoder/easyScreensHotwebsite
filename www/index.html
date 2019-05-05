@@ -22,8 +22,8 @@
 	  <script type="text/javascript" src="cordova.js"></script>
 	</head>
 
-    <body style="overflow-x:hidden;">
-       <div style="background: url(fadeH.png) no-repeat; width: 100%;height: 60%;background-position: cover; position:absolute;left:0px;top: 0px;"></div>
+    <body style="overflow-x:hidden;background-color: rgba(232,233,234,0.7);">
+
        <div id="contentStep" style="display: none;position:absolute;left:0px;top:0px;height:100%;width:100%;">
 
                     <div id="header" style="position:relative;left:0px;top:0px;width:100%;padding-bottom:15px;padding-top:5px;">
@@ -51,7 +51,7 @@
 
                                   	<label style="color:#95A3CF;font-size:28px;font-family:aBold;line-height:0.8">
                                       Awesome!
-                                      <br><span style="color:#6B5A5F;font-size:23px;font-family:aItalic;">Take your picture</span>
+                                      <br><span style="color:#6B5A5F;font-size:23px;font-family:aItalic;">Your picture has been captured successfully</span>
                                     </label>
                                     <br>
                                 </td>
@@ -84,43 +84,31 @@
                                   </div>
                                 </td>
                               </tr>
+
                               <tr>
-                                <td colspan="2" align="center">
-                                  <br>
-                                  <img src="https://iep.life/images/websites/1img1535545391.png" width="100%">
-                                  <br>
+                                <td colspan="2">
+                                  <div style="margin-top:10px;background-color: #95A3CF; width: 100%;height: 40px;padding:5px;cursor: pointer;" class="shadowButton" onclick="saveScreenshot();">
+                                       <table width="100%" height="100%">
+                                           <tr>
+                                                <td valign="center" align="center" >
+                                                    <label style="color:white;font-size:20px;font-family:aBold;line-height:0.9;cursor: pointer;">Try Again
+                                       </label>
+                                                </td>
+                                           </tr>
+                                       </table>
+
+                                  </div>
                                 </td>
+
                               </tr>
 
                               <tr>
-                                  <td valign="top" align="left" width="50%">
-                                    <label style="color:#6B5A5F;font-size:18px;font-family:aBold;">
-                                      Size:
-                                       <span style="color:#95A3CF;font-size:18px;font-family:aRegular;">512 KB</span>
-                                     </label>
-                                  </td>
-                                  <td valign="top" align="left" width="50%">
-                                    <label style="color:#6B5A5F;font-size:18px;font-family:aBold;">
-                                      Format:
-                                       <span style="color:#95A3CF;font-size:18px;font-family:aRegular;">JPEG</span>
-                                     </label>
-                                  </td>
-                                </tr>
-                                <tr>
-                                    <td valign="top" align="left" width="50%">
-                                      <label style="color:#6B5A5F;font-size:18px;font-family:aBold;">
-                                        Quality:
-                                         <span style="color:#95A3CF;font-size:18px;font-family:aRegular;">Good</span>
-                                       </label>
-                                    </td>
-                                    <td valign="top" align="left" width="50%">
-                                      <label style="color:#6B5A5F;font-size:18px;font-family:aBold;">
-                                        PX:
-                                         <span style="color:#95A3CF;font-size:16px;font-family:aRegular;"> 1920 x 850</span>
-                                       </label>
-                                    </td>
-                                  </tr>
-
+                                <td colspan="2" align="center">
+                                  <br>
+                                  <img src="https://iep.life/images/websites/1img1535545391.png" id="responseImage" width="100%">
+                                  <br>
+                                </td>
+                              </tr>
                       </table>
                     </div>
                     <div style="display:none;position:absolute;left:0px;top:20%;height:80%;width:100%;" align="center" id="fetching">
@@ -290,12 +278,15 @@ var currentStep=0;
           $("#firstStep").fadeOut();
           $("#secondStep").fadeOut();
           $("#fetching").fadeIn();
-          setTimeout(function(){
-            if(!cancelScreen)    {
-                step(3);
-                cancelScreen=false;
-            }
-          },3000);
+          if(!cancelScreen)    {
+            $.post("https://internetespoder.com/apps/easyscreenshotswebsite/cdn/core.php",{site:currentNameWebsite}).done(function(data){
+              $("#responseImage").attr("src",data);
+              setTimeout(function(){  step(3);},2000);
+            });
+
+              cancelScreen=false;
+          }
+
         }
         if(id==3){
           $("#firstStep").fadeOut();
