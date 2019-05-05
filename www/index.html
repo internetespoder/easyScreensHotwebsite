@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>IEP 1.0</title>
+    <title>Easy Website Screenshots</title>
 
      <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-touch-fullscreen" content="yes">
@@ -48,64 +48,69 @@
 
                       <table width="80%" height="">
                   				<tr>
-                  						<td valign="center" align="center" width="50%">
+                  						<td valign="center" width="50%">
                                   <label style="color:#6B5A5F;font-size:23px;font-family:aItalic;">
                                     Width in px
                                   </label>
-                                  <input class="form-control" id="width" value="1920" type="number">
+                                  <input class="form-control" id="width" value="1200" type="number">
                               </td>
+                            </tr>
+                            <tr>
                               <td>
                                   <label style="color:#6B5A5F;font-size:23px;font-family:aItalic;" onclick="alert($(this).attr('text'))" text="Is your height of page, if value is 0 the image is fullscreen">
                                     Height in px <span style="color:#95A3CF;">(?)</span>
                                   </label>
-                                  <input class="form-control" id="width" value="0" type="number">
+                                  <input class="form-control" id="height" value="0" type="number">
 
                   							</td>
                   				</tr>
                           <tr>
-                  						<td valign="center" align="center" width="50%">
+                  						<td valign="center"  width="50%">
                                   <label style="color:#6B5A5F;font-size:23px;font-family:aItalic;" onclick="alert($(this).attr('text'))" text="Specifies the timeout while the page loads, value 0 seconds is default">
                                     Wait in sec <span style="color:#95A3CF;">(?)</span>
                                   </label>
-                                  <input class="form-control" id="headers" placeholder="0" type="number">
+                                  <input class="form-control" id="wait" placeholder="0" type="number">
                               </td>
+                            </tr>
+                            <tr>
                               <td>
                                   <label style="color:#6B5A5F;font-size:23px;font-family:aItalic;" onclick="alert($(this).attr('text'))" text="select your image quality if the quality is higher, your file size will be bigger">
                                     Quality <span style="color:#95A3CF;">(?)</span>
                                   </label>
-                                  <select class="form-control">
-                                    <option value="1">Low</option>
-                                    <option value="2">Medium</option>
-                                    <option value="3">Hight</option>
-                                    <option value="4" selected>Very High</option>
-                                    <option value="5">Maximum</option>
+                                  <select class="form-control" id="sQuality">
+                                    <option value="20">Low</option>
+                                    <option value="40">Medium</option>
+                                    <option value="60">Hight</option>
+                                    <option value="80" selected>Very High</option>
+                                    <option value="100">Maximum</option>
                                   </div>
 
                   							</td>
                   				</tr>
                           <tr>
-                  						<td valign="center" align="center" width="50%">
+                  						<td valign="center"  width="50%">
                                   <label onclick="alert($(this).attr('text'))" text="Send Paramteres to website via GET request with this especific format: param1=onecontent;param2=secondcontent;" style="color:#6B5A5F;font-size:23px;font-family:aItalic;">
                                     Headers <span style="color:#95A3CF;">(?)</span>
                                   </label>
-                                  <input class="form-control" id="headers" placeholder="param1=one;param2=two" type="number">
+                                  <input class="form-control" id="headers" placeholder="param1=one;param2=two" type="text">
                               </td>
+                            </tr>
+                            <tr>
                               <td>
                                   <label onclick="alert($(this).attr('text'))" text="Set Cookies to yo page with this format: cookie1=yourcookie;cookie2=yourcookie;" style="color:#6B5A5F;font-size:23px;font-family:aItalic;">
                                     Cookies <span style="color:#95A3CF;">(?)</span>
                                   </label>
-                                  <input class="form-control" id="cookies" placeholder="cookie1=one;cookie2=two;" value="" type="number">
+                                  <input class="form-control" id="cookies" placeholder="cookie1=one;cookie2=two;" value="" type="text">
 
                   							</td>
                   				</tr>
-
                           <tr>
                             <td colspan="">
-                              <div style="margin-top:15px;background-color: #95A3CF; width: 100%;height: 40px;padding:5px;cursor: pointer;" class="shadowButton" onclick="step(1);">
+                              <div style="margin-top:15px;background-color: #95A3CF; width: 100%;height: 40px;padding:5px;cursor: pointer;" class="shadowButton" onclick="saveSettings();">
                                    <table width="100%" height="100%">
                                        <tr>
                                             <td valign="center" align="center">
-                                                <label style="color:white;font-size:20px;font-family:aBold;line-height:0.9;cursor: pointer;">Back
+                                                <label style="color:white;font-size:20px;font-family:aBold;line-height:0.9;cursor: pointer;">Save Settings
                                    </label>
                                             </td>
                                        </tr>
@@ -113,12 +118,15 @@
 
                               </div>
                             </td>
+                          </tr>
+
+                          <tr>
                             <td colspan="">
-                              <div style="margin-top:15px;background-color: #95A3CF; width: 100%;height: 40px;padding:5px;cursor: pointer;" class="shadowButton" onclick="alert(1);">
+                              <div style="margin-top:15px;background-color: #95A3CF; width: 100%;height: 40px;padding:5px;cursor: pointer;" class="shadowButton" onclick="step(1);defaultValues();">
                                    <table width="100%" height="100%">
                                        <tr>
                                             <td valign="center" align="center">
-                                                <label style="color:white;font-size:20px;font-family:aBold;line-height:0.9;cursor: pointer;">Save Settings
+                                                <label style="color:white;font-size:20px;font-family:aBold;line-height:0.9;cursor: pointer;">Default Values
                                    </label>
                                             </td>
                                        </tr>
@@ -175,7 +183,7 @@
 
                               <tr>
                                 <td colspan="2">
-                                  <div style="margin-top:10px;background-color: #95A3CF; width: 100%;height: 40px;padding:5px;cursor: pointer;" class="shadowButton" onclick="$('#domain').val('');step(0);">
+                                  <div style="margin-top:10px;background-color: #95A3CF; width: 100%;height: 40px;padding:5px;cursor: pointer;" class="shadowButton" onclick="$('#domain').val('');step(0);defaultValues();">
                                        <table width="100%" height="100%">
                                            <tr>
                                                 <td valign="center" align="center" >
@@ -201,7 +209,7 @@
                     </div>
                     <div style="display:none;position:absolute;left:0px;top:20%;height:80%;width:100%;" align="center" id="fetching">
 
-                      <table width="100%" height="100%">
+                      <table width="100%" height="70%">
                   				<tr>
                   						<td valign="center" align="center">
 
@@ -236,6 +244,10 @@
                                     </div>
 
                                     <div style="margin-top:15px;background-color: #95A3CF; width: 300px;height: 40px;padding:5px;cursor: pointer;" class="shadowButton" onclick="step(4);">
+                                      <div style="position:relative;width:100%;display:none;" id="withChanges">
+                                        <div style="position:absolute;right:-15px;top:-15px;background-color:red;border-radius:50%;width:30px;height:30px;" >
+                                        </div>
+                                      </div>
                                          <table width="100%" height="100%">
                                              <tr>
                                                   <td valign="center" align="center">
@@ -295,9 +307,79 @@
     	</div>
 
     <script>
+    var cancelScreen=false;
+    var full_page="true";
+    var specialSettings=false;
+    var strParams="&full_page=true&width=1200&response_type=image";
 
     document.addEventListener("backbutton", onBackKeyDown, false);
-    var cancelScreen=false;
+
+    function defaultValues(){
+        $("#width").val("1200");
+        $("#height").val("0");
+        $("#sQuality option:selected").val(80);
+        $("#headers").val("");
+        $("#cookies").val("");
+        specialSettings=false;
+        strParams="&full_page=true&width=1200&response_type=image";
+        $("#withChanges").css("display", "none");
+    }
+    function saveSettings(){
+      width=$("#width").val();
+      height=$("#height").val();
+      quality=$("#sQuality option:selected").val();
+      headers=$("#headers").val();
+      cookies=$("#cookies").val();
+      var str1="";
+      var str2="";
+      if(height=="0"){
+         full_page="true";
+      }else{
+        specialSettings=true;
+           full_page="false";
+      }
+
+      if($.trim(headers)!=''){
+        exp=$.trim(headers).split(";");
+        if(exp.length){
+          cont=0;
+          str1="";
+          for(var i=0;i < exp.length; i++){
+              c=exp[i];
+              if(c!=''){
+                str1=str1+c+";";
+              }
+          }
+          //alert(str1);
+        }
+          specialSettings=true;
+      }
+
+      if($.trim(cookies)!=''){
+        exp2=$.trim(cookies).split(";");
+        if(exp2.length){
+          cont2=0;
+          str2="";
+          for(var i=0;i < exp2.length; i++){
+              c=exp2[i];
+              if(c!=''){
+                str2=str2+c+";";
+              }
+          }
+          //alert(str2);
+        }
+          specialSettings=true;
+
+      }
+
+      if(specialSettings){
+        $("#withChanges").fadeIn();
+          strParams="&height="+height+"&width="+width+"&full_page="+full_page+"&quality="+quality+"&headers="+str1+"&cookies="+str2+"&response_type=image";
+      }
+      step(1);
+    }
+
+
     function saveScreenshot(){
       alert("save");
     }
@@ -318,7 +400,8 @@
 
 
       if(currentStep==0 || currentStep==1) {step(0); return;}
-      if(currentStep==3) {step(1); return;}
+      if(currentStep==3) {step(0);$("#domain").val(""); defaultValues(); return; }
+      if(currentStep==4) {step(1); return;}
       if(currentStep==2) {step(0); }
     }
     function validURL(str) {
@@ -332,6 +415,7 @@
 }
 var currentNameWebsite;
 var currentStep=0;
+var haveParams=false;
 function emptyStep(){
   $("#firstStep").css("display","none");
   $("#secondStep").css("display","none");
@@ -367,14 +451,17 @@ function emptyStep(){
 
             }else{
                 alert("Please write a correct name of website");
+                $("#firstStep").fadeIn();
             }
         }
         if(id==2){
 
           $("#fetching").fadeIn();
           if(!cancelScreen)    {
-            $.post("https://internetespoder.com/apps/easyscreenshotswebsite/cdn/core.php",{site:currentNameWebsite}).done(function(data){
+
+            $.post("https://internetespoder.com/apps/easyscreenshotswebsite/cdn/core.php",{site:currentNameWebsite, params:strParams}).done(function(data){
               $("#responseImage").attr("src",data);
+            
               setTimeout(function(){  step(3);},2000);
             });
 
