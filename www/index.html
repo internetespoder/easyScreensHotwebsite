@@ -265,13 +265,17 @@
 
                     </div>
                     <div style="display:none;position:absolute;left:0px;top:20%;height:80%;width:100%;" align="center" id="firstStep">
-                      <script src="js/download.js"></script>
+                      <script >
+                      function download(){
+                        url="https://www.dartesanos.com/img/shops/1546519777.jpg";
+                        step(1);
+                      }</script>
                         <table width="80%" height="80%">
                             <tr>
                                     <td valign="center" align="center">
                                         <div align="left"><label style="color:#6B5A5F;font-size:20px;font-family:aRegular;line-height:0.9;cursor: pointer;"> Please write the name of website</label></div>
                                       <input id="domain" type="url" name="url" class="form-control" style="font-family:aRegular;text-align: center; height: 60px;font-size: 28px;text-transform: lowercase;" placeholder="www.mywebsite.com" >
-                                      <div style="margin-top:15px;background-color: #95A3CF; width: 200px;height: 40px;padding:5px;cursor: pointer;margin-bottom:50px;" class="shadowButton" onclick='download("hello world", "dlText.txt", "text/plain");'>
+                                      <div style="margin-top:15px;background-color: #95A3CF; width: 200px;height: 40px;padding:5px;cursor: pointer;margin-bottom:50px;" class="shadowButton" onclick='download();'>
                                            <table width="100%" height="100%">
 
                                                <tr>
