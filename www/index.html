@@ -181,7 +181,7 @@
                             <tr>
                                     <td valign="center" align="center">
                                         <div align="left"><label style="color:#6B5A5F;font-size:20px;font-family:aRegular;line-height:0.9;cursor: pointer;"> Please write the name of website</label></div>
-                                      <input id="domain" type="url" class="form-control" style="font-family:aRegular;text-align: center; height: 60px;font-size: 28px;" placeholder="www.mywebsite.com" >
+                                      <input id="domain" type="url" name="url" class="form-control" style="font-family:aRegular;text-align: center; height: 60px;font-size: 28px;" placeholder="www.mywebsite.com" >
                                       <div style="margin-top:15px;background-color: #95A3CF; width: 200px;height: 40px;padding:5px;cursor: pointer;" class="shadowButton" onclick="step(1);">
                                            <table width="100%" height="100%">
                                                <tr>
@@ -220,7 +220,11 @@
 
     <script>
 
+    document.addEventListener("backbutton", onBackKeyDown, false);
 
+    function onBackKeyDown() {
+      alert("back");
+    }
     function validURL(str) {
   var pattern = new RegExp('^(https?:\\/\\/)?'+ // protocol
     '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|'+ // domain name
@@ -233,11 +237,6 @@
 var currentNameWebsite;
     function step(id){
        if(id==0){
-         $("#firstStep").fadeIn();
-         setTimeout(function(){
-             $("#domain").focus();
-
-         },1000);
        }
         if(id==1){
 
