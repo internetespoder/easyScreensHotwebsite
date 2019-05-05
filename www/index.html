@@ -22,11 +22,11 @@
 	  <script type="text/javascript" src="cordova.js"></script>
 	</head>
 
-    <body style=" overflow: hidden;">
+    <body style="overflow-x:hidden;">
        <div style="background: url(fadeH.png) no-repeat; width: 100%;height: 60%;background-position: cover; position:absolute;left:0px;top: 0px;"></div>
        <div id="contentStep" style="display: none;position:absolute;left:0px;top:0px;height:100%;width:100%;">
 
-                    <div id="header" style="position:absolute;left:0px;top:0px;height:20%;width:100%;">
+                    <div id="header" style="position:relative;left:0px;top:0px;width:100%;padding-bottom:15px;padding-top:15px;">
                        <table width="100%" style="margin-top:25px;">
                             <tbody><tr>
                                <td width="10%" align="left" valign="center"></td>
@@ -44,7 +44,7 @@
 
 
                     </div>
-                    <div style="display:none;position:absolute;left:0px;top:20%;height:80%;width:100%;" align="center" id="thirdStep" align="center">
+                    <div style="display:none;position:relative;left:0px;top:0px;height:auto;width:100%;" align="center" id="thirdStep" align="center">
                       <table width="90%" height="">
                               <tr>
                                 <td colspan="2" align="center">
@@ -181,7 +181,7 @@
                             <tr>
                                     <td valign="center" align="center">
                                         <div align="left"><label style="color:#6B5A5F;font-size:20px;font-family:aRegular;line-height:0.9;cursor: pointer;"> Please write the name of website</label></div>
-                                      <input id="domain" class="form-control" style="font-family:aRegular;text-align: center; height: 60px;font-size: 28px;" placeholder="www.mywebsite.com" >
+                                      <input id="domain" type="url" class="form-control" style="font-family:aRegular;text-align: center; height: 60px;font-size: 28px;" placeholder="www.mywebsite.com" >
                                       <div style="margin-top:15px;background-color: #95A3CF; width: 200px;height: 40px;padding:5px;cursor: pointer;" class="shadowButton" onclick="step(1);">
                                            <table width="100%" height="100%">
                                                <tr>
@@ -232,8 +232,15 @@
 }
 var currentNameWebsite;
     function step(id){
-       if(id==0) $("#firstStep").fadeIn();
+       if(id==0){
+         $("#firstStep").fadeIn();
+         setTimeout(function(){
+             $("#domain").focus();
+
+         },1000);
+       }
         if(id==1){
+
             var protocol; var domainOutProtocol;
             domain=$("#domain").val();
             searchProtocol=domain.indexOf("://");
@@ -250,6 +257,7 @@ var currentNameWebsite;
                 $("#firstStep").fadeOut();
                 $("#secondStep").fadeIn();
                 $("#nameWebsite").html(currentNameWebsite);
+
             }else{
                 alert("Please write a correct name of website");
             }
