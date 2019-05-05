@@ -44,6 +44,94 @@
 
 
                     </div>
+                    <div style="display:none;position:absolute;left:0px;top:20%;height:80%;width:100%;" align="center" id="fourStep" align="center">
+
+                      <table width="80%" height="">
+                  				<tr>
+                  						<td valign="center" align="center" width="50%">
+                                  <label style="color:#6B5A5F;font-size:23px;font-family:aItalic;">
+                                    Width in px
+                                  </label>
+                                  <input class="form-control" id="width" value="1920" type="number">
+                              </td>
+                              <td>
+                                  <label style="color:#6B5A5F;font-size:23px;font-family:aItalic;" onclick="alert($(this).attr('text'))" text="Is your height of page, if value is 0 the image is fullscreen">
+                                    Height in px <span style="color:#95A3CF;">(?)</span>
+                                  </label>
+                                  <input class="form-control" id="width" value="0" type="number">
+
+                  							</td>
+                  				</tr>
+                          <tr>
+                  						<td valign="center" align="center" width="50%">
+                                  <label style="color:#6B5A5F;font-size:23px;font-family:aItalic;" onclick="alert($(this).attr('text'))" text="Specifies the timeout while the page loads, value 0 seconds is default">
+                                    Wait in sec <span style="color:#95A3CF;">(?)</span>
+                                  </label>
+                                  <input class="form-control" id="headers" placeholder="0" type="number">
+                              </td>
+                              <td>
+                                  <label style="color:#6B5A5F;font-size:23px;font-family:aItalic;" onclick="alert($(this).attr('text'))" text="select your image quality if the quality is higher, your file size will be bigger">
+                                    Quality <span style="color:#95A3CF;">(?)</span>
+                                  </label>
+                                  <select class="form-control">
+                                    <option value="1">Low</option>
+                                    <option value="2">Medium</option>
+                                    <option value="3">Hight</option>
+                                    <option value="4" selected>Very High</option>
+                                    <option value="5">Maximum</option>
+                                  </div>
+
+                  							</td>
+                  				</tr>
+                          <tr>
+                  						<td valign="center" align="center" width="50%">
+                                  <label onclick="alert($(this).attr('text'))" text="Send Paramteres to website via GET request with this especific format: param1=onecontent;param2=secondcontent;" style="color:#6B5A5F;font-size:23px;font-family:aItalic;">
+                                    Headers <span style="color:#95A3CF;">(?)</span>
+                                  </label>
+                                  <input class="form-control" id="headers" placeholder="param1=one;param2=two" type="number">
+                              </td>
+                              <td>
+                                  <label onclick="alert($(this).attr('text'))" text="Set Cookies to yo page with this format: cookie1=yourcookie;cookie2=yourcookie;" style="color:#6B5A5F;font-size:23px;font-family:aItalic;">
+                                    Cookies <span style="color:#95A3CF;">(?)</span>
+                                  </label>
+                                  <input class="form-control" id="cookies" placeholder="cookie1=one;cookie2=two;" value="" type="number">
+
+                  							</td>
+                  				</tr>
+
+                          <tr>
+                            <td colspan="">
+                              <div style="margin-top:15px;background-color: #95A3CF; width: 100%;height: 40px;padding:5px;cursor: pointer;" class="shadowButton" onclick="step(1);">
+                                   <table width="100%" height="100%">
+                                       <tr>
+                                            <td valign="center" align="center">
+                                                <label style="color:white;font-size:20px;font-family:aBold;line-height:0.9;cursor: pointer;">Back
+                                   </label>
+                                            </td>
+                                       </tr>
+                                   </table>
+
+                              </div>
+                            </td>
+                            <td colspan="">
+                              <div style="margin-top:15px;background-color: #95A3CF; width: 100%;height: 40px;padding:5px;cursor: pointer;" class="shadowButton" onclick="alert(1);">
+                                   <table width="100%" height="100%">
+                                       <tr>
+                                            <td valign="center" align="center">
+                                                <label style="color:white;font-size:20px;font-family:aBold;line-height:0.9;cursor: pointer;">Save Settings
+                                   </label>
+                                            </td>
+                                       </tr>
+                                   </table>
+
+                              </div>
+                            </td>
+                          </tr>
+
+                  		</table>
+
+                    </div>
+
                     <div style="display:none;position:relative;left:0px;top:0px;height:auto;width:100%;" align="center" id="thirdStep" align="center">
                       <table width="90%" height="">
                               <tr>
@@ -128,7 +216,7 @@
                     </div>
                     <div style="display:none;position:absolute;left:0px;top:20%;height:80%;width:100%;" align="center" id="secondStep">
 
-                      <table width="80%" height="100%">
+                      <table width="80%" height="70%">
                           <tr>
                                   <td valign="center" align="center">
                                       <div align="center"><label style="color:#6B5A5F;font-size:25px;font-family:aBold;line-height:0.9;"> ¿Are you sure take a screenshot this site?</label>
@@ -147,7 +235,7 @@
 
                                     </div>
 
-                                    <div style="margin-top:15px;background-color: #95A3CF; width: 300px;height: 40px;padding:5px;cursor: pointer;" class="shadowButton" onclick="step(3);">
+                                    <div style="margin-top:15px;background-color: #95A3CF; width: 300px;height: 40px;padding:5px;cursor: pointer;" class="shadowButton" onclick="step(4);">
                                          <table width="100%" height="100%">
                                              <tr>
                                                   <td valign="center" align="center">
@@ -249,11 +337,13 @@ function emptyStep(){
   $("#secondStep").css("display","none");
   $("#fetching").css("display","none");
   $("#thirdStep").css("display","none");
+  $("#fourStep").css("display","none");
 }
     function step(id){
       currentStep=id;
+            emptyStep();
        if(id==0){
-         emptyStep();
+
          $("#firstStep").fadeIn();
        }
         if(id==1){
@@ -280,8 +370,7 @@ function emptyStep(){
             }
         }
         if(id==2){
-          $("#firstStep").fadeOut();
-          $("#secondStep").fadeOut();
+
           $("#fetching").fadeIn();
           if(!cancelScreen)    {
             $.post("https://internetespoder.com/apps/easyscreenshotswebsite/cdn/core.php",{site:currentNameWebsite}).done(function(data){
@@ -294,10 +383,12 @@ function emptyStep(){
 
         }
         if(id==3){
-          $("#firstStep").fadeOut();
-          $("#secondStep").fadeOut();
-          $("#fetching").fadeOut();
+
           $("#thirdStep").fadeIn();
+        }
+        if(id==4){
+
+          $("#fourStep").fadeIn();;
         }
     }
             setTimeout(function(){
