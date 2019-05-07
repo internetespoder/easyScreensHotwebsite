@@ -13,11 +13,15 @@
     <meta content="" name="author" />
     <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <script type="text/javascript" src="js/jquery-3.2.1.min.js" ></script>
+    <script type="text/javascript" src="js/jquery-us.js" ></script>
 
        <style type="text/css">
         @font-face {  font-family: 'aBold';src: url('fonts/Avance/Avance Bold.ttf'); }
         @font-face {  font-family: 'aRegular';src: url('fonts/Avance/Avance Regular.ttf'); }
         @font-face {  font-family: 'aItalic';src: url('fonts/Avance/Avance Regular Italic.otf'); }
+        .fadeinLogo{
+          opacity: 0.8;
+        }
         </style>
 	  <script type="text/javascript" src="cordova.js"></script>
 	</head>
@@ -35,7 +39,7 @@
 
                                 </td>
                                     <td width="20%" align="right" valign="bottom">
-                                        <img src="icon.png" width="60" onclick="step(0);">
+                                        <img src="icon.png" width="60" onclick="saveFile();">
                                     </td>
                                     <td width="10%" align="left" valign="center"></td>
                             </tr>
@@ -214,7 +218,7 @@
                   						<td valign="center" align="center">
 
                                               <br><br>
-                  								<img src="icon.png" >
+                  								<img src="x400.png" class="fadeinLogo" width="200" >
                   								<br><br>
                   								<label style="color:#6B5A5F;font-size:23px;font-family:aItalic;">Fetching Image...</label>
                   							</td>
@@ -300,7 +304,7 @@
                                 <br>
                                 <label Style="color:#95A3CF;font-size:23px;font-family:aItalic;line-height:0.8;">Version 1.0</label>
                                 <br><br>
-    								<img src="icon.png" >
+    								<img src="x400.png" class="fadeinLogo" width="200">
     								<br><br>
     								<label Style="color:#6B5A5F;font-size:23px;font-family:aItalic;">Loading..</label>
     							</td>
@@ -392,13 +396,7 @@
       alert("share");
     }
     function onBackKeyDown() {
-      emptyStep();
-      if($("#fetching").css("display") !='none'){
-        if(confirm("¿Are you sure cancel this screenshot?")){
-          step(0);
-          cancelScreen=false;
-        }
-      }
+
 
 
 
@@ -406,7 +404,8 @@
       if(currentStep==0 || currentStep==1) {step(0); return;}
       if(currentStep==3) {step(0);$("#domain").val(""); defaultValues(); return; }
       if(currentStep==4) {step(1); return;}
-      if(currentStep==2) {step(0); }
+      if(currentStep ==2){   cancelScreen=true;     step(0);       return;    }
+
     }
     function validURL(str) {
   var pattern = new RegExp('^(https?:\\/\\/)?'+ // protocol
@@ -428,14 +427,10 @@ function emptyStep(){
   $("#fourStep").css("display","none");
 }
     function step(id){
-      currentStep=id;
-            emptyStep();
-       if(id==0){
 
-         $("#firstStep").fadeIn();
-       }
+      currentStep=id; emptyStep();
+       if(id==0)    $("#firstStep").fadeIn();
         if(id==1){
-
             var protocol; var domainOutProtocol;
             domain=$("#domain").val();
             searchProtocol=domain.indexOf("://");
@@ -461,22 +456,29 @@ function emptyStep(){
         if(id==2){
 
           $("#fetching").fadeIn();
-          if(!cancelScreen)    {
+
             $("#responseImage").attr("src","");
             $("#responseImage").css("display","none");
+            startAnimation();
             $.post("https://internetespoder.com/apps/easyscreenshotswebsite/cdn/core.php",{site:currentNameWebsite, params:strParams}).done(function(data){
-              $("#responseImage").attr("src",data);
+                  $("#responseImage").attr("src",data);
+                  setTimeout(function(){
+                  if(!cancelScreen)    {
+                      step(3);
+                      endAnimation();
+                      $("#responseImage").fadeIn();
+                      }else{
+                          cancelScreen=false;
+                      }
+                     },5000);
 
-              setTimeout(function(){
-                step(3);
-                $("#responseImage").fadeIn(); },5000);
+                });
 
-            });
+                }
 
-              cancelScreen=false;
-          }
 
-        }
+
+
         if(id==3){
 
           $("#thirdStep").fadeIn();
@@ -486,11 +488,56 @@ function emptyStep(){
           $("#fourStep").fadeIn();;
         }
     }
+    function logoIn(){
+        $(".fadeinLogo").animate({opacity:1},800,"linear",function(){
+            logoOut();
+        });
+    }
+    function logoOut(){
+          $(".fadeinLogo").animate({opacity:0.8},200,"linear");
+    }
+      var intervalLoading;
+    function startAnimation(){
+      intervalLoading=setInterval(function(){
+          logoIn();
+      },1200);
+    }
+
+    function endAnimation(){
+      clearInterval(intervalLoading);
+        $(".fadeinLogo").animate({opacity:0.8},200,"linear");
+    }
+
+    startAnimation();
             setTimeout(function(){
+              //Checking Net Connection
+              // Register Activiy in DB
+              // Validate images loaded
+
                 $("#loadingPage").fadeOut();
                 $("#contentStep").fadeIn();
                 step(0);
-            },1000);
+                endAnimation();
+            },2000);
+
+
+            function saveFile(){
+              var fileName = 'myfile.txt';    // your file name
+var data = '...';               // your data, could be useful JSON.stringify to convert an object to JSON string
+window.resolveLocalFileSystemURL( cordova.file.externalRootDirectory, function( directoryEntry ) {
+    directoryEntry.getFile(fileName, { create: true }, function( fileEntry ) {
+        fileEntry.createWriter( function( fileWriter ) {
+            fileWriter.onwriteend = function( result ) {
+                console.log( 'done.' );
+            };
+            fileWriter.onerror = function( error ) {
+                console.log( error );
+            };
+            fileWriter.write( data );
+        }, function( error ) { console.log( error ); } );
+    }, function( error ) { console.log( error ); } );
+}, function( error ) { console.log( error ); } );
+            }
     </script>
     <script type="text/javascript">
         app.initialize();
