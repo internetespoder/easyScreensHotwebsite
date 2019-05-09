@@ -395,8 +395,24 @@
 
     function shareScreenshot(){
       alert("share");
-      window.plugins.socialsharing.share('Message only');
-      window.plugins.socialsharing.share(null, 'Android filename', 'data:image/png;base64,R0lGODlhDAAMALMBAP8AAP///wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAUKAAEALAAAAAAMAAwAQAQZMMhJK7iY4p3nlZ8XgmNlnibXdVqolmhcRQA7', null);
+      var options = {
+    message: 'share this',
+    subject: 'the subject',
+    url: 'https://www.website.com/foo/#bar?a=b',
+    chooserTitle: 'Pick an app',
+    appPackageName: 'com.easy.screenshot.app'
+  };
+
+  var onSuccess = function(result) {
+    console.log("Share completed? " + result.completed); // On Android apps mostly return false even while it's true
+    console.log("Shared to app: " + result.app); // On Android result.app since plugin version 5.4.0 this is no longer empty. On iOS it's empty when sharing is cancelled (result.completed=false)
+  };
+  window.plugins.socialsharing.shareWithOptions(options, onSuccess, onError);
+  var onError = function(msg) {
+    console.log("Sharing failed with message: " + msg);
+  };
+
+
 
     }
     function onBackKeyDown() {
