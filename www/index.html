@@ -171,9 +171,6 @@
                                   </div>
                                 </td>
                                 <td colspan="">
-                                <button onclick="window.plugins.socialsharing.share('Message only')">message only</button>
-                                <button onclick="window.plugins.socialsharing.share(null, 'Android filename', 'data:image/png;base64,R0lGODlhDAAMALMBAP8AAP///wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAUKAAEALAAAAAAMAAwAQAQZMMhJK7iY4p3nlZ8XgmNlnibXdVqolmhcRQA7', null)">base64 image only</button>
-                                
                                   <div style="margin-top:15px;background-color: #95A3CF; width: 100%;height: 40px;padding:5px;cursor: pointer;" class="shadowButton" onclick="shareScreenshot();">
                                        <table width="100%" height="100%">
                                            <tr>
@@ -397,26 +394,8 @@
     }
 
     function shareScreenshot(){
-
-      var options = {
-    message: 'share this',
-    subject: 'the subject',
-    url: 'https://www.website.com/foo/#bar?a=b',
-    chooserTitle: 'Pick an app',
-    appPackageName: 'com.easy.screenshot.app'
-  };
-
-  var onSuccess = function(result) {
-    alert("Share completed? " + result.completed); // On Android apps mostly return false even while it's true
-    alert("Shared to app: " + result.app); // On Android result.app since plugin version 5.4.0 this is no longer empty. On iOS it's empty when sharing is cancelled (result.completed=false)
-
-  };
-  window.plugins.socialsharing.shareWithOptions(options, onSuccess, onError);
-  var onError = function(msg) {
-    alert("Sharing failed with message: " + msg);
-  };
-
-
+      currentImageBase64=$("#responseImage").attr("src");
+window.plugins.socialsharing.share(null, 'Your Image', 'data:image/png;base64,R0lGODlhDAAMALMBAP8AAP///wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAUKAAEALAAAAAAMAAwAQAQZMMhJK7iY4p3nlZ8XgmNlnibXdVqolmhcRQA7', null)
 
     }
     function onBackKeyDown() {
@@ -550,13 +529,6 @@ function emptyStep(){
                 step(0);
                 endAnimation();
             },2000);
-
-            function saveFile2(){
-              toDataURL($("#responseImage").attr("src"), function(dataUrl) {
-              alert(dataUrl);
-           })
-            }
-
 
 
 
