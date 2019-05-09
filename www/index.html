@@ -565,20 +565,14 @@ window.resolveLocalFileSystemURL( cordova.file.externalRootDirectory, function( 
               var fileName=x=prompt("name of file.jpg");
               /** Process the type1 base64 string **/
 var myBaseString = dataImage;
-
-// Split the base64 string in data and contentType
+ //here
 var block = myBaseString.split(";");
-// Get the content type
 var dataType = block[0].split(":")[1];// In this case "image/png"
-// get the real base64 content of the file
 var realData = block[1].split(",")[1];// In this case "iVBORw0KGg...."
 
-// The path where the file will be created
-var folderpath = cordova.file.externalRootDirectory;
-// The name of your file, note that you need to know if is .png,.jpeg etc
-//var filename = "myimage.png";
+//b64toBlob(realData,dataType);
 
-savebase64AsImageFile(folderpath,filename,realData,dataType);
+//savebase64AsImageFile(folderpath,filename,realData,dataType);
 
 
               window.resolveLocalFileSystemURL( cordova.file.externalRootDirectory, function( directoryEntry ) {
