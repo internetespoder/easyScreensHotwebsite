@@ -11,7 +11,7 @@
      <preference name="DisallowOverscroll" value="true" />
     <preference name="android-minSdkVersion" value="14" />
     <preference name="BackgroundColor" value="0xffffffff"/>
- 
+
     <plugin name="cordova-plugin-file" source="npm" spec="~4.1.1" />
     <plugin name="cordova-plugin-file-transfer" source="npm" spec="~1.5.0" />
     <plugin name="cordova-plugin-device" source="npm" spec="~1.1.1" />

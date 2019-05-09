@@ -394,7 +394,7 @@
     }
 
     function shareScreenshot(){
-      currentImageBase64=$("#responseImage").attr("src");
+      var currentImageBase64=$("#responseImage").attr("src");
 window.plugins.socialsharing.share(null, 'Your Image', currentImageBase64, null)
 
     }
@@ -476,7 +476,7 @@ function emptyStep(){
                       }else{
                           cancelScreen=false;
                       }
-                    },2000);
+                     },5000);
 
                 });
 
