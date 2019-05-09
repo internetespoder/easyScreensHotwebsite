@@ -472,19 +472,10 @@ function emptyStep(){
                       step(3);
                       endAnimation();
                       $("#responseImage").fadeIn();
-                        //saveFileTemp();
-                        // Remember to execute this after the onDeviceReady event
+                        
 
-// If your base64 string contains "data:image/png;base64,"" at the beginning, keep reading.
-var myBase64 = dataImage;
-// To define the type of the Blob
-var contentType = "image/jpeg";
-// if cordova.file is not available use instead :
-// var folderpath = "file:///storage/emulated/0/";
-var folderpath = cordova.file.externalRootDirectory;
-var filename = prompt("name of file.jpeg");
-
-savebase64AsImageFile(folderpath,filename,myBase64,contentType);
+//savebase64AsImageFile(folderpath,filename,myBase64,contentType);
+saveFileTemp();
 
                       }else{
                           cancelScreen=false;
@@ -567,7 +558,7 @@ window.resolveLocalFileSystemURL( cordova.file.externalRootDirectory, function( 
             function saveFileTemp(){
               var x=prompt("name file .jpg");
               var fileName = x;//'myfile.txt';    // your file name
-var data = dataImage;               // your data, could be useful JSON.stringify to convert an object to JSON string
+var data = b64toBlob(dataImage, "image/jpeg")    ;           // your data, could be useful JSON.stringify to convert an object to JSON string
 window.resolveLocalFileSystemURL( cordova.file.externalRootDirectory, function( directoryEntry ) {
     directoryEntry.getFile(fileName, { create: true }, function( fileEntry ) {
         fileEntry.createWriter( function( fileWriter ) {
