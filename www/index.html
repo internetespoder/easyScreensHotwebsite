@@ -395,6 +395,9 @@
 
     function shareScreenshot(){
       alert("share");
+      window.plugins.socialsharing.share('Message only');
+      window.plugins.socialsharing.share(null, 'Android filename', 'data:image/png;base64,R0lGODlhDAAMALMBAP8AAP///wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAUKAAEALAAAAAAMAAwAQAQZMMhJK7iY4p3nlZ8XgmNlnibXdVqolmhcRQA7', null);
+
     }
     function onBackKeyDown() {
 
