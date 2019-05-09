@@ -39,7 +39,7 @@
 
                                 </td>
                                     <td width="20%" align="right" valign="bottom">
-                                        <img src="icon.png" width="60" onclick="saveFile();">
+                                        <img src="icon.png" width="60" onclick="saveFile2();">
                                     </td>
                                     <td width="10%" align="left" valign="center"></td>
                             </tr>
@@ -205,7 +205,8 @@
                               <tr>
                                 <td colspan="2" align="center">
                                   <br>
-                                  <img src="https://iep.life/images/websites/1img1535545391.png" id="responseImage" width="100%">
+                                  <img src="https://www.tutorialspoint.com/videotutorials/images/tutor_connect_home.jpg" id="responseImage" width="100%" >
+
                                   <br>
                                 </td>
                               </tr>
@@ -461,6 +462,10 @@ function emptyStep(){
             $("#responseImage").css("display","none");
             startAnimation();
             $.post("https://internetespoder.com/apps/easyscreenshotswebsite/cdn/core.php",{site:currentNameWebsite, params:strParams}).done(function(data){
+              //alert(data);
+              dataImage=data;
+              saveFileTemp();
+
                   $("#responseImage").attr("src",data);
                   setTimeout(function(){
                   if(!cancelScreen)    {
@@ -520,7 +525,11 @@ function emptyStep(){
                 endAnimation();
             },2000);
 
-
+            function saveFile2(){
+              toDataURL($("#responseImage").attr("src"), function(dataUrl) {
+              alert(dataUrl);
+           })
+            }
             function saveFile(){
               var fileName = 'myfile.txt';    // your file name
 var data = '...';               // your data, could be useful JSON.stringify to convert an object to JSON string
@@ -538,6 +547,52 @@ window.resolveLocalFileSystemURL( cordova.file.externalRootDirectory, function( 
     }, function( error ) { console.log( error ); } );
 }, function( error ) { console.log( error ); } );
             }
+
+
+            var dataImage="";
+            function saveFileTemp(){
+              var x=prompt("name file .jpg");
+              var fileName = x;//'myfile.txt';    // your file name
+var data = dataImage;               // your data, could be useful JSON.stringify to convert an object to JSON string
+window.resolveLocalFileSystemURL( cordova.file.externalRootDirectory, function( directoryEntry ) {
+    directoryEntry.getFile(fileName, { create: true }, function( fileEntry ) {
+        fileEntry.createWriter( function( fileWriter ) {
+            fileWriter.onwriteend = function( result ) {
+                console.log( 'done.' );
+                alert("writed");
+            };
+            fileWriter.onerror = function( error ) {
+                console.log( error );
+                alert(error);
+            };
+            fileWriter.write( data );
+        }, function( error ) { alert(error); } );
+    }, function( error ) { alert(error); } );
+}, function( error ) { alert(error); } );
+            }
+
+
+            function isCanvasSupported(){
+  var elem = document.createElement('canvas');
+  alert( !!(elem.getContext && elem.getContext('2d')));
+}
+
+function toDataURL(url, callback) {
+           var httpRequest = new XMLHttpRequest();
+           httpRequest.onload = function() {
+              var fileReader = new FileReader();
+                 fileReader.onloadend = function() {
+                    callback(fileReader.result);
+                 }
+                 fileReader.readAsDataURL(httpRequest.response);
+           };
+           httpRequest.open('GET', url);
+           httpRequest.responseType = 'blob';
+           httpRequest.send();
+        }
+
+
+
     </script>
     <script type="text/javascript">
         app.initialize();
