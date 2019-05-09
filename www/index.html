@@ -555,25 +555,38 @@ window.resolveLocalFileSystemURL( cordova.file.externalRootDirectory, function( 
 
 
             var dataImage="";
+            function onPrompt(results) {
+                alert("respone " + results.buttonIndex + " and entered " + results.input1);
+                var data = dataImage;
+                var fileName=results.input1;
+                window.resolveLocalFileSystemURL( cordova.file.externalRootDirectory, function( directoryEntry ) {
+                    directoryEntry.getFile(fileName, { create: true }, function( fileEntry ) {
+                        fileEntry.createWriter( function( fileWriter ) {
+                            fileWriter.onwriteend = function( result ) {
+                                console.log( 'done.' );
+                               alert("writed");
+                            };
+                            fileWriter.onerror = function( error ) {
+                                console.log( error );
+                                alert(error);
+                            };
+                            fileWriter.write( data );
+                        }, function( error ) { alert(error); } );
+                    }, function( error ) { alert(error); } );
+                }, function( error ) { alert(error); } );
+
+            }
+
             function saveFileTemp(){
-              var x=prompt("name file .jpg");
-              var fileName = x;//'myfile.txt';    // your file name
-var data = dataImage;//b64toBlob(dataImage, "image/jpeg")    ;           // your data, could be useful JSON.stringify to convert an object to JSON string
-window.resolveLocalFileSystemURL( cordova.file.externalRootDirectory, function( directoryEntry ) {
-    directoryEntry.getFile(fileName, { create: true }, function( fileEntry ) {
-        fileEntry.createWriter( function( fileWriter ) {
-            fileWriter.onwriteend = function( result ) {
-                console.log( 'done.' );
-               alert("writed");
-            };
-            fileWriter.onerror = function( error ) {
-                console.log( error );
-                alert(error);
-            };
-            fileWriter.write( data );
-        }, function( error ) { alert(error); } );
-    }, function( error ) { alert(error); } );
-}, function( error ) { alert(error); } );
+          navigator.notification.prompt(
+              'Name of your file',  // message
+              onPrompt,                  // callback to invoke
+              'Save File',            // title
+              ['Save','Exit'],             // buttonLabels
+              'mypicture.jpg'                 // defaultText
+          );
+
+
             }
 
 
