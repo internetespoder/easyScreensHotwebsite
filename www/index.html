@@ -315,6 +315,11 @@
     	</div>
 
     <script>
+    function shareScreenshot(){
+      var currentImageBase64=$("#responseImage").attr("src");
+      window.plugins.socialsharing.share(null, 'Your Image', currentImageBase64, null);
+
+    }
     var cancelScreen=false;
     var full_page="true";
     var specialSettings=false;
