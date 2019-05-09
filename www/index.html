@@ -541,7 +541,7 @@ function emptyStep(){
             function saveFile(){
               var data = dataImage;
               nowTime2=Date.now();
-              var fileName=nowTime2 + ".jpg"; //x=prompt("Please put a name file.jpg" , nowTime2);
+              var fileName="Download/"+nowTime2 + ".jpg"; //x=prompt("Please put a name file.jpg" , nowTime2);
               /** Process the type1 base64 string **/
               var myBaseString = dataImage;
 
@@ -559,7 +559,7 @@ function emptyStep(){
   window.cordova.plugins.FileOpener.canOpenFile(localFile, function(data){
     if(data.canBeOpen==true){
       window.cordova.plugins.FileOpener.openFile(localFile, function(){
-        alert("File opened");
+        console.log("File opened");
       }, onError);
     }
   }, onError);
