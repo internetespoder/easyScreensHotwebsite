@@ -158,7 +158,7 @@
                               </tr>
                               <tr>
                                 <td colspan="">
-                                  <div style="margin-top:15px;background-color: #95A3CF; width: 100%;height: 40px;padding:5px;cursor: pointer;" class="shadowButton" onclick="saveScreenshot();">
+                                  <div style="margin-top:15px;background-color: #95A3CF; width: 100%;height: 40px;padding:5px;cursor: pointer;" class="shadowButton" onclick="saveFile();">
                                        <table width="100%" height="100%">
                                            <tr>
                                                 <td valign="center" align="center">
@@ -472,10 +472,8 @@ function emptyStep(){
                       step(3);
                       endAnimation();
                       $("#responseImage").fadeIn();
-
-
-//savebase64AsImageFile(folderpath,filename,myBase64,contentType);
-saveFileTemp();
+                      //saveFileTemp();
+                      addBase64ToSQL();
 
                       }else{
                           cancelScreen=false;
@@ -535,45 +533,21 @@ saveFileTemp();
               alert(dataUrl);
            })
             }
-            function saveFile(){
-              var fileName = 'myfile.txt';    // your file name
-var data = '...';               // your data, could be useful JSON.stringify to convert an object to JSON string
-window.resolveLocalFileSystemURL( cordova.file.externalRootDirectory, function( directoryEntry ) {
-    directoryEntry.getFile(fileName, { create: true }, function( fileEntry ) {
-        fileEntry.createWriter( function( fileWriter ) {
-            fileWriter.onwriteend = function( result ) {
-                console.log( 'done.' );
-            };
-            fileWriter.onerror = function( error ) {
-                console.log( error );
-            };
-            fileWriter.write( data );
-        }, function( error ) { console.log( error ); } );
-    }, function( error ) { console.log( error ); } );
-}, function( error ) { console.log( error ); } );
-            }
+
+
 
 
             var dataImage="";
-
-
-            function saveFileTemp(){
-
-
-
+            function saveFile(){
               var data = dataImage;
-              var fileName=x=prompt("name of file.jpg");
+              nowTime2=Date.now();
+              var fileName=nowTime2 + ".jpg"; //x=prompt("Please put a name file.jpg" , nowTime2);
               /** Process the type1 base64 string **/
-var myBaseString = dataImage;
- //here
-var block = myBaseString.split(";");
-var dataType = block[0].split(":")[1];// In this case "image/png"
-var realData = block[1].split(",")[1];// In this case "iVBORw0KGg...."
+              var myBaseString = dataImage;
 
-//b64toBlob(realData,dataType);
-
-//savebase64AsImageFile(folderpath,filename,realData,dataType);
-
+              var block = myBaseString.split(";");
+              var dataType = block[0].split(":")[1];// In this case "image/png"
+              var realData = block[1].split(",")[1];// In this case "iVBORw0KGg...."
 
               window.resolveLocalFileSystemURL( cordova.file.externalRootDirectory, function( directoryEntry ) {
                   directoryEntry.getFile(fileName, { create: true }, function( fileEntry ) {
@@ -595,10 +569,22 @@ var realData = block[1].split(",")[1];// In this case "iVBORw0KGg...."
             }
 
 
-            function isCanvasSupported(){
-  var elem = document.createElement('canvas');
-  alert( !!(elem.getContext && elem.getContext('2d')));
+function addBase64ToSQL(){
+  var db=window.openDatabase("easyDB", "2.0", "Test DB", 1000000);
+  console.log(db);
+  nowTime=Date.now();
+
+  db.transaction(function (tx) {
+    tx.executeSql("INSERT INTO images VALUES('"+dataImage+"', '"+currentNameWebsite+"', '"+nowTime+"')");
+    //tx.executeSql("INSERT INTO images VALUES('base64-2', 'www.request2.com', '-2887884')");
+}, errorCB, successCB);
+
 }
+
+          function isCanvasSupported(){
+          var elem = document.createElement('canvas');
+          alert( !!(elem.getContext && elem.getContext('2d')));
+          }
 
 function toDataURL(url, callback) {
            var httpRequest = new XMLHttpRequest();
@@ -635,30 +621,27 @@ function toDataURL(url, callback) {
                 }
 
               var blob = new Blob(byteArrays, {type: contentType});
-              alert(blob);
+
               return blob;
         }
 
-        function savebase64AsImageFile(folderpath,filename,content,contentType){
-            // Convert the base64 string in a Blob
-            var DataBlob = b64toBlob(content,contentType);
 
-            console.log("Starting to write the file :3");
+        document.addEventListener("deviceready", onDeviceReady, false);
+              function onDeviceReady() {
+                      var db = window.openDatabase("easyDB", "2.0", "Test DB", 1000000);
+                      console.log(db);
 
-            window.resolveLocalFileSystemURL(folderpath, function(dir) {
-                console.log("Access to the directory granted succesfully");
-        		dir.getFile(filename, {create:true}, function(file) {
-                    console.log("File created succesfully.");
-                    file.createWriter(function(fileWriter) {
-                        console.log("Writing content to file");
-                        fileWriter.write(DataBlob);
-                        alert("writed in root");
-                    }, function(){
-                        alert('Unable to save file in path '+ folderpath);
-                    });
-        		});
-            });
-        }
+
+                      db.transaction(function (tx) {
+                        tx.executeSql('DROP TABLE IF EXISTS images');
+                        tx.executeSql('CREATE TABLE IF NOT EXISTS images (base64Image text, website text, time_in text)');
+                      }, errorCB, successCB);
+
+                      }
+                      function errorCB(e){
+                        console.log(e);
+                      }
+                      function successCB(){}
 
 
     </script>
