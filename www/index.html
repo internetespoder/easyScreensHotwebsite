@@ -555,6 +555,7 @@ function emptyStep(){
                           fileWriter.onwriteend = function( result ) {
                               console.log( 'done.' );
                              alert("writed");
+  window.cordova.plugins.FileOpener.canOpenFile(cordova.file.externalRootDirectory+"/"+fileName, onSuccess, onError);
                           };
                           fileWriter.onerror = function( error ) {
                               console.log( error );
@@ -567,6 +568,20 @@ function emptyStep(){
 
 
             }
+
+
+            var onSuccess = function(data) {
+                alert('extension: ' + data.extension + '\n' +
+                      'canBeOpen: ' + data.canBeOpen);
+            };
+
+            // onError Callback receives a json object
+            //
+            function onError(error) {
+                alert('message: '  + error.message);
+            }
+
+            //window.cordova.plugins.FileOpener.canOpenFile("http://www.website.com/file.pdf", onSuccess, onError);
 
 
 function addBase64ToSQL(){
