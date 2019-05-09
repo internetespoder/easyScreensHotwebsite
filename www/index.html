@@ -554,8 +554,15 @@ function emptyStep(){
                       fileEntry.createWriter( function( fileWriter ) {
                           fileWriter.onwriteend = function( result ) {
                               console.log( 'done.' );
-                             alert("writed");
-  window.cordova.plugins.FileOpener.canOpenFile(cordova.file.externalRootDirectory+"/"+fileName, onSuccess, onError);
+                             //alert("writed");
+                             var localFile=cordova.file.externalRootDirectory+"/"+fileName;
+  window.cordova.plugins.FileOpener.canOpenFile(localFile, function(data){
+    if(data.canBeOpen==true){
+      window.cordova.plugins.FileOpener.openFile(localFile, function(){
+        alert("File opened");
+      }, onError);
+    }
+  }, onError);
                           };
                           fileWriter.onerror = function( error ) {
                               console.log( error );
@@ -571,6 +578,7 @@ function emptyStep(){
 
 
             var onSuccess = function(data) {
+
                 alert('extension: ' + data.extension + '\n' +
                       'canBeOpen: ' + data.canBeOpen);
             };
