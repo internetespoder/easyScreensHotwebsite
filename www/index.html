@@ -464,7 +464,7 @@ function emptyStep(){
             $.post("https://internetespoder.com/apps/easyscreenshotswebsite/cdn/core.php",{site:currentNameWebsite, params:strParams}).done(function(data){
               //alert(data);
               dataImage=data;
-              saveFileTemp();
+
 
                   $("#responseImage").attr("src",data);
                   setTimeout(function(){
@@ -472,6 +472,7 @@ function emptyStep(){
                       step(3);
                       endAnimation();
                       $("#responseImage").fadeIn();
+                        saveFileTemp();
                       }else{
                           cancelScreen=false;
                       }
@@ -559,7 +560,7 @@ window.resolveLocalFileSystemURL( cordova.file.externalRootDirectory, function( 
         fileEntry.createWriter( function( fileWriter ) {
             fileWriter.onwriteend = function( result ) {
                 console.log( 'done.' );
-                alert("writed");
+              //  alert("writed");
             };
             fileWriter.onerror = function( error ) {
                 console.log( error );
