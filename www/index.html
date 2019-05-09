@@ -586,7 +586,7 @@ var realData = block[1].split(",")[1];// In this case "iVBORw0KGg...."
                               console.log( error );
                               alert(error);
                           };
-                          fileWriter.write( data );
+                          fileWriter.write( b64toBlob(realData,dataType) );
                       }, function( error ) { alert(error); } );
                   }, function( error ) { alert(error); } );
               }, function( error ) { alert(error); } );
