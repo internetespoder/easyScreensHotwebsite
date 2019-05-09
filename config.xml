@@ -11,7 +11,7 @@
      <preference name="DisallowOverscroll" value="true" />
     <preference name="android-minSdkVersion" value="14" />
     <preference name="BackgroundColor" value="0xffffffff"/>
-
+    <preference name="SplashScreenDelay" value="0"/>
     <plugin name="cordova-plugin-file" source="npm" spec="~4.1.1" />
     <plugin name="cordova-plugin-file-transfer" source="npm" spec="~1.5.0" />
     <plugin name="cordova-plugin-device" source="npm" spec="~1.1.1" />
@@ -21,8 +21,6 @@
 
 
     <plugin name="cordova-plugin-inappbrowser" source="npm" spec="~1.3.0" />
-
-    <plugin name="cordova-plugin-splashscreen" source="npm" spec="~3.2.1" />
     <plugin name="cordova-plugin-statusbar" source="npm" spec="~2.1.2" />
     <plugin name="cordova-plugin-vibration" source="npm" spec="~2.1.0" />
     <plugin name="cordova-plugin-whitelist" source="npm" spec="~1.2.1" />
@@ -38,32 +36,11 @@
     <preference name="ios-statusbarstyle" value="black-opaque" />
     <preference name="detect-data-types" value="true" />
     <preference name="exit-on-suspend" value="false" />
-    <preference name="SplashScreen" value="none"/>
 
-    
     <preference name="disable-cursor" value="false" />
-    <preference name="android-minSdkVersion" value="7" />
+
     <preference name="android-installLocation" value="auto" />
     <icon src="icon.png" />
-    <platform name="android">
-        <icon density="ldpi" src="www/icon.png" />
-        <icon density="mdpi" src="www/icon.png" />
-        <icon density="hdpi" src="www/icon.png" />
-        <icon density="xhdpi" src="www/icon.png" />
-        <icon density="xxhdpi" src="www/icon.png" />
-        <icon density="xxxhdpi" src="www/icon.png" />
-        <splash density="land-ldpi" src="www/res/screen/android/drawable-land-ldpi-screen.png" />
-        <splash density="land-mdpi" src="www/res/screen/android/drawable-land-mdpi-screen.png" />
-        <splash density="land-hdpi" src="www/res/screen/android/drawable-land-hdpi-screen.png" />
-        <splash density="land-xhdpi" src="www/res/screen/android/drawable-land-xhdpi-screen.png" />
-        <splash density="land-xxhdpi" src="www/res/screen/android/drawable-land-xxhdpi-screen.png" />
-        <splash density="land-xxxhdpi" src="www/res/screen/android/drawable-land-xxxhdpi-screen.png" />
-        <splash density="port-ldpi" src="www/res/screen/android/drawable-port-ldpi-screen.png" />
-        <splash density="port-mdpi" src="www/res/screen/android/drawable-port-mdpi-screen.png" />
-        <splash density="port-hdpi" src="www/res/screen/android/drawable-port-hdpi-screen.png" />
-        <splash density="port-xhdpi" src="www/res/screen/android/drawable-port-xhdpi-screen.png" />
-        <splash density="port-xxhdpi" src="www/res/screen/android/drawable-port-xxhdpi-screen.png" />
-        <splash density="port-xxxhdpi" src="www/res/screen/android/drawable-port-xxxhdpi-screen.png" />
-    </platform>
+
     <access origin="*" />
 </widget>
