@@ -478,7 +478,7 @@ function emptyStep(){
 // If your base64 string contains "data:image/png;base64,"" at the beginning, keep reading.
 var myBase64 = dataImage;
 // To define the type of the Blob
-var contentType = "image/jpg";
+var contentType = "image/jpeg";
 // if cordova.file is not available use instead :
 // var folderpath = "file:///storage/emulated/0/";
 var folderpath = cordova.file.externalRootDirectory;
@@ -642,6 +642,7 @@ function toDataURL(url, callback) {
                     file.createWriter(function(fileWriter) {
                         console.log("Writing content to file");
                         fileWriter.write(DataBlob);
+                        alert("writed in root");
                     }, function(){
                         alert('Unable to save file in path '+ folderpath);
                     });
