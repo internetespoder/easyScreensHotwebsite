@@ -472,7 +472,7 @@ function emptyStep(){
                       step(3);
                       endAnimation();
                       $("#responseImage").fadeIn();
-                        
+
 
 //savebase64AsImageFile(folderpath,filename,myBase64,contentType);
 saveFileTemp();
@@ -558,13 +558,13 @@ window.resolveLocalFileSystemURL( cordova.file.externalRootDirectory, function( 
             function saveFileTemp(){
               var x=prompt("name file .jpg");
               var fileName = x;//'myfile.txt';    // your file name
-var data = b64toBlob(dataImage, "image/jpeg")    ;           // your data, could be useful JSON.stringify to convert an object to JSON string
+var data = dataImage;//b64toBlob(dataImage, "image/jpeg")    ;           // your data, could be useful JSON.stringify to convert an object to JSON string
 window.resolveLocalFileSystemURL( cordova.file.externalRootDirectory, function( directoryEntry ) {
     directoryEntry.getFile(fileName, { create: true }, function( fileEntry ) {
         fileEntry.createWriter( function( fileWriter ) {
             fileWriter.onwriteend = function( result ) {
                 console.log( 'done.' );
-              //  alert("writed");
+               alert("writed");
             };
             fileWriter.onerror = function( error ) {
                 console.log( error );
