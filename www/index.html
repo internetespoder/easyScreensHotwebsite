@@ -470,7 +470,7 @@ function emptyStep(){
               validateResponse();
             },1000);
             $.post("https://internetespoder.com/apps/easyscreenshotswebsite/cdn/core.php",{site:currentNameWebsite, params:strParams}).done(function(data){
-              if($.parseJSON(data)){
+              if($.trim(data)=='{"error" : "ERR_NAME_NOT_RESOLVED"}'){
                 cancelScreen=true;
                 step(0);
                 alert("Sorry we detected one error with this website");
