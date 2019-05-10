@@ -26,12 +26,12 @@
 	  <script type="text/javascript" src="cordova.js"></script>
 	</head>
 
-    <body style="overflow-x:hidden;background-color: rgba(232,233,234,0.7);">
+    <body style="overflow-x:hidden;background-color: rgba(232,233,234,0.7);display:none;" onload="responsiveElements()" >
 
        <div id="contentStep" style="display: none;position:absolute;left:0px;top:0px;height:100%;width:100%;">
 
                     <div id="header" style="position:relative;left:0px;top:0px;width:100%;padding-bottom:15px;padding-top:5px;">
-                       <table width="100%" style="margin-top:25px;">
+                       <table width="100%" style="margin-top:10px;">
                             <tbody><tr>
                                <td width="10%" align="left" valign="center"></td>
                                     <td width="55%" align="left" valign="center">
@@ -220,7 +220,7 @@
                   						<td valign="center" align="center">
 
                                               <br><br>
-                  								<img src="x400.png" class="fadeinLogo" width="200" >
+                  								<img src="x400.png" class="fadeinLogo responsiveLogos" width="200" >
                   								<br><br>
                   								<label style="color:#6B5A5F;font-size:23px;font-family:aItalic;">Fetching Image...</label>
                   							</td>
@@ -233,11 +233,11 @@
                       <table width="80%" height="70%">
                           <tr>
                                   <td valign="center" align="center">
-                                      <div align="center"><label style="color:#6B5A5F;font-size:25px;font-family:aBold;line-height:0.9;"> ¿Are you sure take a screenshot this site?</label>
+                                      <div align="center"><label style="color:#6B5A5F;font-size:25px;font-family:aBold;line-height:0.9;margin-top:40px;;"> ¿Are you sure take a screenshot this site?</label>
 <br> <span style="color:#95A3CF;font-size:23px;font-family:aBold;" id="nameWebsite">www.google.com</span>
                                       </div>
 
-                                    <div style="margin-top:15px;background-color: #95A3CF; width: 300px;height: 40px;padding:5px;cursor: pointer;" class="shadowButton" onclick="step(2);">
+                                    <div class="responsive" style="margin-top:15px;background-color: #95A3CF; width: 300px;height: 40px;padding:5px;cursor: pointer;" class="shadowButton" onclick="step(2);">
                                          <table width="100%" height="100%">
                                              <tr>
                                                   <td valign="center" align="center">
@@ -249,7 +249,7 @@
 
                                     </div>
 
-                                    <div style="margin-top:15px;background-color: #95A3CF; width: 300px;height: 40px;padding:5px;cursor: pointer;" class="shadowButton" onclick="step(4);">
+                                    <div class="responsive" style="margin-top:15px;background-color: #95A3CF; width: 300px;height: 40px;padding:5px;cursor: pointer;" class="shadowButton" onclick="step(4);">
                                       <div style="position:relative;width:100%;display:none;" id="withChanges">
                                         <div style="position:absolute;right:-15px;top:-15px;background-color:red;border-radius:50%;width:30px;height:30px;" >
                                         </div>
@@ -274,10 +274,10 @@
 
                         <table width="80%" height="80%">
                             <tr>
-                                    <td valign="center" align="center">
-                                        <div align="left"><label style="color:#6B5A5F;font-size:20px;font-family:aRegular;line-height:0.9;cursor: pointer;"> Please write the name of website</label></div>
-                                      <input id="domain" type="url" name="url" class="form-control" style="font-family:aRegular;text-align: center; height: 60px;font-size: 28px;text-transform: lowercase;" placeholder="www.mywebsite.com" >
-                                      <div style="margin-top:15px;background-color: #95A3CF; width: 200px;height: 40px;padding:5px;cursor: pointer;margin-bottom:50px;" class="shadowButton" onclick='  step(1);'>
+                                    <td valign="top" align="center">
+                                        <div align="left" style="margin-top:40px;"><label style="color:#6B5A5F;font-size:20px;font-family:aRegular;line-height:0.9;cursor: pointer;"> Please write the name of website</label></div>
+                                      <input id="domain" type="url" name="url" class="form-control" style="font-family:aRegular;text-align: center; height: 60px;font-size: 28px;text-transform: lowercase;" placeholder=""  autocomplete="off" >
+                                      <div style="margin-top:15px;background-color: #95A3CF; width: 200px;height: 40px;padding:5px;cursor: pointer;margin-bottom:50px;" class="responsive" onclick='  step(1);'>
                                            <table width="100%" height="100%">
 
                                                <tr>
@@ -306,7 +306,7 @@
                                 <br>
                                 <label Style="color:#95A3CF;font-size:23px;font-family:aItalic;line-height:0.8;">Version 1.0</label>
                                 <br><br>
-    								<img src="x400.png" class="fadeinLogo" width="200">
+    								<img src="x400.png" class="fadeinLogo responsiveLogos" width="200">
     								<br><br>
     								<label Style="color:#6B5A5F;font-size:23px;font-family:aItalic;">Loading..</label>
     							</td>
@@ -426,11 +426,15 @@ function emptyStep(){
   $("#thirdStep").css("display","none");
   $("#fourStep").css("display","none");
 }
+    var timerOut;
+    var contResponse=0;
     function step(id){
 
       currentStep=id; emptyStep();
        if(id==0)    $("#firstStep").fadeIn();
         if(id==1){
+          responsiveElements();
+
             var protocol; var domainOutProtocol;
             domain=$("#domain").val();
             searchProtocol=domain.indexOf("://");
@@ -454,24 +458,24 @@ function emptyStep(){
             }
         }
         if(id==2){
-
+          clearInterval(timerOut);
           $("#fetching").fadeIn();
 
             $("#responseImage").attr("src","");
             $("#responseImage").css("display","none");
             startAnimation();
+            timerOut= setInterval(function(){
+              validateResponse();
+            },1000);
             $.post("https://internetespoder.com/apps/easyscreenshotswebsite/cdn/core.php",{site:currentNameWebsite, params:strParams}).done(function(data){
-              //alert(data);
+
               dataImage=data;
-
-
                   $("#responseImage").attr("src",data);
                   setTimeout(function(){
                   if(!cancelScreen)    {
                       step(3);
                       endAnimation();
                       $("#responseImage").fadeIn();
-                      //saveFileTemp();
                       addBase64ToSQL();
 
                       }else{
@@ -494,6 +498,20 @@ function emptyStep(){
 
           $("#fourStep").fadeIn();;
         }
+    }
+    var timeLimitWait=60;
+    function validateResponse(){
+      contResponse++;
+      if(contResponse>=timeLimitWait){
+        cancelScreen=true;
+        step(0);
+
+        contResponse=0;
+        clearInterval(timerOut);
+        alert("Sorry this site it takes too long");
+        $("#domain").val("");
+
+      }
     }
     function logoIn(){
         $(".fadeinLogo").animate({opacity:1},800,"linear",function(){
@@ -658,10 +676,26 @@ function toDataURL(url, callback) {
                       }
                       function successCB(){}
 
+        function responsiveElements(){
+          var w = window.innerWidth
+  || document.documentElement.clientWidth
+  || document.body.clientWidth;
 
-    </script>
-    <script type="text/javascript">
+  var h = window.innerHeight
+  || document.documentElement.clientHeight
+  || document.body.clientHeight;
+          (w > 500)? wdth="450px": wdth="300px";     $(".responsive").css("width", wdth);
+          (h < 400) ? hght="100": hght="200";  $(".responsiveLogos").attr("width", hght);
+        }
+
+        //console.log(screen.orientation.type); // e.g. portrait
+        window.addEventListener("orientationchange", function(){ responsiveElements(); });
+        window.addEventListener("onresize", function(){ responsiveElements(); });
+
+        $( document ).ready(function() {            $("body").fadeIn();         });
         app.initialize();
+
+
     </script>
 
   </body>
