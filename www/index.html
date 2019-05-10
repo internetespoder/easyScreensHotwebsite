@@ -1,9 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" style="">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+    <meta name='viewport' content='width=device-width'>
     <title>Easy Website Screenshots</title>
 
      <meta name="apple-mobile-web-app-capable" content="yes">
@@ -28,10 +30,10 @@
 
     <body style="overflow-x:hidden;background-color: rgba(232,233,234,0.7);display:none;" onload="responsiveElements()" >
 
-       <div id="contentStep" style="display: none;position:absolute;left:0px;top:0px;height:100%;width:100%;">
+       <div id="contentStep" style="display: none;width:100%;">
 
-                    <div id="header" style="position:relative;left:0px;top:0px;width:100%;padding-bottom:15px;padding-top:3px;">
-                       <table width="100%" style="margin-top:0px;">
+                    <div id="header" style="position:relative;left:0px;top:0px;width:100%;padding-top:3px;b">
+                       <table width="100%" style="margin-top:0px;;">
                             <tbody><tr>
                                <td width="10%" align="left" valign="center"></td>
                                     <td width="55%" align="left" valign="center">
@@ -48,7 +50,7 @@
 
 
                     </div>
-                    <div style="display:none;position:absolute;left:0px;top:20%;height:80%;width:100%;" align="center" id="fourStep" align="center">
+                    <div style="display:none;left:0px;height:80%;width:100%;" align="center" id="fourStep" align="center">
 
                       <table width="80%" height="">
                   				<tr>
@@ -188,7 +190,7 @@
 
                               <tr>
                                 <td colspan="2">
-                                  <div style="margin-top:10px;background-color: #95A3CF; width: 100%;height: 40px;padding:5px;cursor: pointer;" class="shadowButton" onclick="$('#domain').val('');step(0);defaultValues();">
+                                  <div style="margin-top:10px;background-color: #95A3CF; width: 100%;height: 40px;padding:5px;cursor: pointer;" class="shadowButton" onclick="step(0);defaultValues();">
                                        <table width="100%" height="100%">
                                            <tr>
                                                 <td valign="center" align="center" >
@@ -213,7 +215,7 @@
                               </tr>
                       </table>
                     </div>
-                    <div style="display:none;position:absolute;left:0px;top:20%;height:80%;width:100%;" align="center" id="fetching">
+                    <div style="display:none;left:0px;top:20%;height:80%;width:100%;" align="center" id="fetching">
 
                       <table width="100%" height="70%">
                   				<tr>
@@ -228,7 +230,7 @@
                   		</table>
 
                     </div>
-                    <div style="display:none;position:absolute;left:0px;top:20%;height:80%;width:100%;" align="center" id="secondStep">
+                    <div style="display:none;left:0px;top:20%;height:80%;width:100%;" align="center" id="secondStep">
 
                       <table width="80%" height="70%">
                           <tr>
@@ -270,14 +272,14 @@
                       </table>
 
                     </div>
-                    <div style="display:none;position:absolute;left:0px;top:20%;height:80%;width:100%;" align="center" id="firstStep">
+                    <div style="display:none;left:0px;top:20%;height:80%;width:100%;" align="center" id="firstStep">
 
-                        <table width="80%" height="80%">
+                        <table width="100%" height="80%">
                             <tr>
                                     <td valign="top" align="center">
-                                        <div align="left" style="margin-top:20px;"><label style="color:#6B5A5F;font-size:20px;font-family:aRegular;line-height:0.9;cursor: pointer;"> Please write the name of website</label></div>
-                                      <input id="domain" type="url" name="url" class="form-control" style="font-family:aRegular;text-align: center; height: 60px;font-size: 28px;text-transform: lowercase;" placeholder=""  autocomplete="off" >
-                                      <div style="margin-top:15px;background-color: #95A3CF; width: 200px;height: 40px;padding:5px;cursor: pointer;margin-bottom:50px;" class="responsive" onclick='  step(1);'>
+                                        <div align="center" style="margin-top:10px;"><label style="color:#6B5A5F;font-size:20px;font-family:aRegular;line-height:0.9;cursor: pointer;"> Please write the name of website</label></div>
+                                      <input id="domain" type="url" name="url" class="form-control" style="font-family:aRegular;text-align: center; height: 60px;font-size: 28px;text-transform: lowercase;max-width:500px;" placeholder=""  autocomplete="off" >
+                                      <div style="margin-top:15px;background-color: #95A3CF; width: 200px;height: 40px;padding:5px;cursor: pointer;margin-bottom:50px;max-width:500px;" class="responsive" onclick='  step(1);'>
                                            <table width="100%" height="100%">
 
                                                <tr>
@@ -365,7 +367,7 @@
                 str1=str1+c+";";
               }
           }
-          //alert(str1);
+
         }
           specialSettings=true;
       }
@@ -381,7 +383,7 @@
                 str2=str2+c+";";
               }
           }
-          //alert(str2);
+
         }
           specialSettings=true;
 
@@ -402,7 +404,7 @@
     function onBackKeyDown() {
 
       if(currentStep==0 || currentStep==1) {step(0); return;}
-      if(currentStep==3) {step(0);$("#domain").val(""); defaultValues(); return; }
+      if(currentStep==3) {step(0); defaultValues(); return; }
       if(currentStep==4) {step(1); return;}
       if(currentStep ==2){  contResponse=0;   clearInterval(timerOut); cancelScreen=true;     step(0);       return;    }
 
@@ -446,7 +448,7 @@ function emptyStep(){
             currentNameWebsite=protocol+domainOutProtocol;
 
 
-            //alert(protocol + "<>" +domainOutProtocol);
+
             if(validURL(theDomain)!=false){
                 $("#firstStep").fadeOut();
                 $("#secondStep").fadeIn();
@@ -468,7 +470,13 @@ function emptyStep(){
               validateResponse();
             },1000);
             $.post("https://internetespoder.com/apps/easyscreenshotswebsite/cdn/core.php",{site:currentNameWebsite, params:strParams}).done(function(data){
-
+              if($.parseJSON(data)){
+                cancelScreen=true;
+                step(0);
+                alert("Sorry we detected one error with this website");
+                  cancelScreen=false; contResponse=0;   clearInterval(timerOut);
+                return;
+              }
               dataImage=data;
                   $("#responseImage").attr("src",data);
                   setTimeout(function(){
@@ -477,11 +485,11 @@ function emptyStep(){
                       endAnimation();
                       $("#responseImage").fadeIn();
                       addBase64ToSQL();
-
+                      contResponse=0;   clearInterval(timerOut);
                       }else{
                           cancelScreen=false;
                       }
-                     },5000);
+                    },3000);
 
                 });
 
@@ -508,7 +516,7 @@ function emptyStep(){
 
         contResponse=0;   clearInterval(timerOut);
         alert("Sorry this site it takes too long");
-        $("#domain").val("");
+        //$("#domain").val("");
 
       }
     }
@@ -563,7 +571,7 @@ function emptyStep(){
                       fileEntry.createWriter( function( fileWriter ) {
                           fileWriter.onwriteend = function( result ) {
                               console.log( 'done.' );
-                             //alert("writed");
+
                              var localFile=cordova.file.externalRootDirectory+"/"+fileName;
   window.cordova.plugins.FileOpener.canOpenFile(localFile, function(data){
     if(data.canBeOpen==true){
@@ -676,19 +684,27 @@ function toDataURL(url, callback) {
                       function successCB(){}
 
         function responsiveElements(){
-          var w = window.innerWidth
-  || document.documentElement.clientWidth
-  || document.body.clientWidth;
 
-  var h = window.innerHeight
-  || document.documentElement.clientHeight
-  || document.body.clientHeight;
-          (w > 500)? wdth="450px": wdth="300px";     $(".responsive").css("width", wdth);
-          (h < 400) ? hght="100": hght="200";  $(".responsiveLogos").attr("width", hght);
+
+          setTimeout(function(){
+              //$("body").width($(document).width());
+              var w = window.innerWidth
+      || document.documentElement.clientWidth
+      || document.body.clientWidth;
+
+      var h = window.innerHeight
+      || document.documentElement.clientHeight
+      || document.body.clientHeight;
+      (w > 500)? wdth="90%": wdth="90%";     $(".responsive").css("width", wdth);
+
+      (h < 400) ? hght="100": hght="200";  $(".responsiveLogos").attr("width", hght);
+
+              (w > 500)? wdth="100%": wdth="90%";     $("#domain").css("width", wdth);
+          },1000)
         }
 
         //console.log(screen.orientation.type); // e.g. portrait
-        window.addEventListener("orientationchange", function(){ alert(screen.orientation.type);responsiveElements(); });
+        window.addEventListener("orientationchange", function(){ console.log(screen.orientation.type);responsiveElements(); });
         window.addEventListener("onresize", function(){ responsiveElements(); });
 
         $( document ).ready(function() {            $("body").fadeIn();         });
