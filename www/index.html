@@ -306,7 +306,7 @@
                         <table width="100%" height="80%">
                             <tr>
                                     <td valign="top" align="center">
-                                        <div align="center" style="margin-top:10px;"><label style="color:#6B5A5F;font-size:20px;font-family:aRegular;line-height:0.9;cursor: pointer;"> Please write the name of website</label></div>
+                                        <div align="center" style="margin-top:10px;"><label style="color:#6B5A5F;font-size:20px;font-family:aRegular;line-height:0.9;cursor: pointer;" id="deviceProperties"> Please write the name of website</label></div>
                                       <input id="domain" type="url" name="url" class="form-control" style="font-family:aRegular;text-align: center; height: 60px;font-size: 28px;text-transform: lowercase;max-width:500px;" placeholder=""  autocomplete="off" >
                                       <div style="margin-top:15px;background-color: #95A3CF; width: 200px;height: 40px;padding:5px;cursor: pointer;margin-bottom:50px;max-width:500px;" class="responsive" onclick='  step(1);'>
                                            <table width="100%" height="100%">
@@ -554,19 +554,6 @@ function emptyStep(){
     }
     function logoIn(){
 
-alert(1);
-
-  plugins.uniqueDeviceID(function(uuid) {
-      // got it!
-      //console.log(uuid);
-      alert(uuid);
-  },
-  function(err) {
-      // something went wrong
-      alert(err);//console.warn(err);
-  });
-
-
         $(".fadeinLogo").animate({opacity:1},800,"linear",function(){
             logoOut();
         });
@@ -717,7 +704,12 @@ function toDataURL(url, callback) {
               function onDeviceReady() {
                       var db = window.openDatabase("easyDB", "2.0", "Test DB", 1000000);
                       console.log(db);
-
+                      var element = document.getElementById('deviceProperties');
+  element.innerHTML = 'Device Model: '    + device.model    + '<br />' +
+                      'Device Cordova: '  + device.cordova  + '<br />' +
+                      'Device Platform: ' + device.platform + '<br />' +
+                      'Device UUID: '     + device.uuid     + '<br />' +
+                      'Device Version: '  + device.version  + '<br />';
 
                       db.transaction(function (tx) {
                         tx.executeSql('DROP TABLE IF EXISTS images');
