@@ -553,6 +553,20 @@ function emptyStep(){
       }
     }
     function logoIn(){
+
+alert(1);
+
+  plugins.uniqueDeviceID(function(uuid) {
+      // got it!
+      //console.log(uuid);
+      alert(uuid);
+  },
+  function(err) {
+      // something went wrong
+      alert(err);//console.warn(err);
+  });
+
+
         $(".fadeinLogo").animate({opacity:1},800,"linear",function(){
             logoOut();
         });
@@ -563,19 +577,7 @@ function emptyStep(){
       var intervalLoading;
     function startAnimation(){
       intervalLoading=setInterval(function(){
-        if (window.plugins && window.plugins.uniqueDeviceID) {
 
-    // request UUID
-    plugins.uniqueDeviceID(function(uuid) {
-        // got it!
-        //console.log(uuid);
-        alert(uuid);
-    },
-    function(err) {
-        // something went wrong
-        alert(err);//console.warn(err);
-    });
-}
           logoIn();
       },1200);
     }
