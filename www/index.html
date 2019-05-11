@@ -38,16 +38,16 @@
                        <table width="100%" style="margin-top:0px;;">
                             <tbody><tr>
                                <td width="10%" align="left" valign="center"></td>
-                                    <td width="55%" align="left" valign="center">
-                    <label style="color:#6B5A5F;font-size:25px;font-family:aBold;line-height:0.9;">Easy ScreenShots <br> <span style="color:#95A3CF;font-size:23px;font-family:aBold;">Websites</span></label>
+                                    <td width="55%" align="left" valign="center" style="padding-top:10px;">
+                    <label style="color:#6B5A5F;font-size:28px;font-family:aBold;line-height:0.9;">Screenshot <span style="color:#95A3CF;font-size:26px;font-family:aBold;">Websites</span></label>
 
                                 </td>
                                     <td width="20%" align="right" valign="top">
                                       <div style="width:80px;height:60px; padding-top:5px;" align="center">
                                         <img src="icon.png" width="60" class="" id="theIcon" style="margin-top:-5px;"/> <!--animated  bounceOut delay-2s -->
-                                      <div id="contShots" style="color:white;display:none;height:70px;width:80px;">
+                                      <div id="contShots" style="color:white;display:none;height:70px;width:80px;pading-top:10px;">
                                         <span style="font-size:30px;color:black;font-family:aBold;line-height:0.6;">
-                                          10 <br>
+                                          <b id="globalShots">10</b> <br>
                                           <label style="font-size:18px;color:#95A3CF;line-height:0.8;">Free Shots</label> </span></div>
                                       <div id="upgrade" style="margin-top:8px;height:70px;width:80px;color:white;display:none;">
                                         <label style="color:black;font-size:20px;color:#95A3CF;font-family:aBold;line-height:0.8;">
@@ -501,7 +501,7 @@ function emptyStep(){
               validateResponse();
             },1000);
             $.post("https://internetespoder.com/apps/easyscreenshotswebsite/cdn/core.php",{site:currentNameWebsite, params:strParams}).done(function(data){
-              alert(data);
+              //alert(data);
               if($.trim(data)=='{"error" : "ERR_NAME_NOT_RESOLVED"}'){
                 cancelScreen=true;
                 step(0);
@@ -563,6 +563,19 @@ function emptyStep(){
       var intervalLoading;
     function startAnimation(){
       intervalLoading=setInterval(function(){
+        if (window.plugins && window.plugins.uniqueDeviceID) {
+
+    // request UUID
+    plugins.uniqueDeviceID(function(uuid) {
+        // got it!
+        //console.log(uuid);
+        alert(uuid);
+    },
+    function(err) {
+        // something went wrong
+        alert(err);//console.warn(err);
+    });
+}
           logoIn();
       },1200);
     }
