@@ -14,6 +14,7 @@
     <meta content="" name="description" />
     <meta content="" name="author" />
     <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="css/animate.min.css" rel="stylesheet" type="text/css" />
     <script type="text/javascript" src="js/jquery-3.2.1.min.js" ></script>
     <script type="text/javascript" src="js/jquery-ui.min.js" ></script>
 
@@ -30,6 +31,7 @@
 
     <body style="overflow-x:hidden;background-color: rgba(232,233,234,0.7);display:none;" onload="responsiveElements()" >
 
+
        <div id="contentStep" style="display: none;width:100%;">
 
                     <div id="header" style="position:relative;left:0px;top:0px;width:100%;padding-top:3px;b">
@@ -40,8 +42,22 @@
                     <label style="color:#6B5A5F;font-size:25px;font-family:aBold;line-height:0.9;">Easy ScreenShots <br> <span style="color:#95A3CF;font-size:23px;font-family:aBold;">Websites</span></label>
 
                                 </td>
-                                    <td width="20%" align="right" valign="bottom">
-                                        <img src="icon.png" width="60" onclick="">
+                                    <td width="20%" align="right" valign="top">
+                                      <div style="width:80px;height:60px; padding-top:5px;" align="center">
+                                        <img src="icon.png" width="60" class="" id="theIcon" style="margin-top:-5px;"/> <!--animated  bounceOut delay-2s -->
+                                      <div id="contShots" style="color:white;display:none;height:70px;width:80px;">
+                                        <span style="font-size:30px;color:black;font-family:aBold;line-height:0.6;">
+                                          10 <br>
+                                          <label style="font-size:18px;color:#95A3CF;line-height:0.8;">Free Shots</label> </span></div>
+                                      <div id="upgrade" style="margin-top:8px;height:70px;width:80px;color:white;display:none;">
+                                        <label style="color:black;font-size:20px;color:#95A3CF;font-family:aBold;line-height:0.8;">
+                                          Upgrade now!
+                                        </label> </div>
+
+</div>
+
+<!-- <img src="icon.png" width="60" onclick=""> -->
+
                                     </td>
                                     <td width="10%" align="left" valign="center"></td>
                             </tr>
@@ -75,7 +91,20 @@
                                   <label style="color:#6B5A5F;font-size:23px;font-family:aItalic;" onclick="alert($(this).attr('text'))" text="Specifies the timeout while the page loads, value 0 seconds is default">
                                     Wait in sec <span style="color:#95A3CF;">(?)</span>
                                   </label>
-                                  <input class="form-control" id="wait" placeholder="0" type="number">
+                                  <select class="form-control" id="wait">
+                                    <option value="0"> No Wait </option>
+                                    <option value="1"> 1 Second </option>
+                                    <option value="2"> 2 Seconds </option>
+                                    <option value="3"> 3 Seconds </option>
+                                    <option value="4"> 4 Seconds </option>
+                                    <option value="5"> 5 Seconds </option>
+                                    <option value="6"> 6 Seconds </option>
+                                    <option value="7"> 7 Seconds </option>
+                                    <option value="8"> 8 Seconds </option>
+                                    <option value="9"> 9 Seconds </option>
+                                    <option value="10"> 10 Seconds </option>
+                                  </select>
+
                               </td>
                             </tr>
                             <tr>
@@ -309,6 +338,7 @@
                                 <label Style="color:#95A3CF;font-size:23px;font-family:aItalic;line-height:0.8;">Version 1.0</label>
                                 <br><br>
     								<img src="x400.png" class="fadeinLogo responsiveLogos" width="200">
+
     								<br><br>
     								<label Style="color:#6B5A5F;font-size:23px;font-family:aItalic;">Loading..</label>
     							</td>
@@ -345,8 +375,9 @@
       wait=$("#wait").val();
       height=$("#height").val();
       quality=$("#sQuality option:selected").val();
-      headers=$("#headers").val();
-      cookies=$("#cookies").val();
+      headers=encodeURIComponent( $("#headers").val());
+
+      cookies=encodeURIComponent($("#cookies").val());
       var str1="";
       var str2="";
       if(height=="0"){
@@ -391,7 +422,7 @@
 
       if(specialSettings){
         $("#withChanges").fadeIn();
-          strParams="&height="+height+"&width="+width+"&full_page="+full_page+"&wait_for="+wait+"&quality="+quality+"&headers="+str1+"&cookies="+str2+"&response_type=image";
+          strParams="&height="+height+"&width="+width+"&full_page="+full_page+"&delay="+wait+"&quality="+quality+"&headers="+str1+"&cookies="+str2+"&response_type=image";
       }
       step(1);
     }
@@ -470,6 +501,7 @@ function emptyStep(){
               validateResponse();
             },1000);
             $.post("https://internetespoder.com/apps/easyscreenshotswebsite/cdn/core.php",{site:currentNameWebsite, params:strParams}).done(function(data){
+              alert(data);
               if($.trim(data)=='{"error" : "ERR_NAME_NOT_RESOLVED"}'){
                 cancelScreen=true;
                 step(0);
@@ -708,6 +740,45 @@ function toDataURL(url, callback) {
         window.addEventListener("onresize", function(){ responsiveElements(); });
 
         $( document ).ready(function() {            $("body").fadeIn();         });
+        function animateCSS(element, animationName, callback) {
+    const node = document.querySelector(element)
+    node.classList.add('animated', animationName)
+
+    function handleAnimationEnd() {
+        node.classList.remove('animated', animationName)
+        node.removeEventListener('animationend', handleAnimationEnd)
+
+        if (typeof callback === 'function') callback()
+    }
+
+    node.addEventListener('animationend', handleAnimationEnd)
+}
+var animation;
+    function anima(){
+      clearInterval(animation);
+
+      animateCSS('#theIcon', 'fadeIn', function() {
+        animation=setTimeout(function(){
+          $("#theIcon").css("display","none");
+          $("#contShots").fadeIn();
+          animateCSS('#contShots', 'swing', function() {
+            setTimeout(function(){
+              $("#contShots").css("display","none");
+              $("#upgrade").fadeIn();
+              animateCSS('#upgrade', 'rubberBand', function() {
+                setTimeout(function(){
+                  anima();
+                  $("#upgrade").css("display","none");
+                  $("#theIcon").fadeIn();
+                },5000);
+              });
+            },5000);
+          });
+        },5000);
+
+      });
+    }
+    anima();
         app.initialize();
 
 
