@@ -31,7 +31,11 @@
 
     <body style="overflow-x:hidden;background-color: rgba(232,233,234,0.7);display:none;" onload="responsiveElements()" >
 
-
+      <div id="upgradeFade" style="display:none;background-color:white;position:absolute;left:0px;top:0px;width:100%; height:100%;;z-index:99;">
+          <div style="background-color:#95A3CF;padding:10px;" align="center">
+              <label style="color:white;font-size:25px;font-family: aBold;"> <span class="globalShots"> 25 </span> Shoots </label>
+          </div>
+      </div>
        <div id="contentStep" style="display: none;width:100%;">
 
                     <div id="header" style="position:relative;left:0px;top:0px;width:100%;padding-top:3px;b">
@@ -43,7 +47,7 @@
 
                                 </td>
                                     <td width="20%" align="right" valign="top">
-                                      <div style="width:80px;height:60px; padding-top:5px;" align="center">
+                                      <div style="width:80px;height:60px; padding-top:5px;" align="center" onclick="upgradeShow();">
                                         <img src="icon.png" width="60" class="" id="theIcon" style="margin-top:-5px;"/> <!--animated  bounceOut delay-2s -->
                                       <div id="contShots" style="color:white;display:none;height:70px;width:80px;pading-top:10px;">
                                         <span style="font-size:30px;color:black;font-family:aBold;line-height:0.6;">
@@ -494,9 +498,10 @@ function emptyStep(){
         if(id==2){
           clearInterval(timerOut);
           currentHits=$("#globalShots").attr("hits");
-              if(currentHits-1 <=0 ){
+              if(currentHits-1 <0 ){
                // alert("force to upgrade");
-               $("#globalShots").html(0)
+               $("#globalShots").html(0);
+               $(".globalShots").html(0);
                 step(0);
                 anima(2)
                 return;
@@ -528,6 +533,7 @@ function emptyStep(){
               
               $("#globalShots").attr("hits",currentHits-1);
               $("#globalShots").html(currentHits-1);
+              $(".globalShots").html(currentHits-1);
               anima(2);
              
               dataImage=data;
@@ -718,12 +724,17 @@ function toDataURL(url, callback) {
         var hits;
         var plan;
         function startAnimation(){
-          modelDevice = "Desarrollo" ;
+         /* modelDevice = "Desarrollo" ;
                          platformDevice="PC";
                          uuidDevice="internetespoder.com";
-                         versionDevice="1.0";
+                         versionDevice="1.0";*/
+                         document.addEventListener("deviceready", function(){
+                          modelDevice = device.model ;
+                       platformDevice=device.platform;
+                       uuidDevice=device.uuid;
+                       versionDevice=device.version;
 
-        $.post("https://internetespoder.com/apps/easyscreenshotswebsite/cdn/ping.php",{model:modelDevice,uuid:uuidDevice,platform:platformDevice,version:versionDevice}).done(function(data){
+                       $.post("https://internetespoder.com/apps/easyscreenshotswebsite/cdn/ping.php",{model:modelDevice,uuid:uuidDevice,platform:platformDevice,version:versionDevice}).done(function(data){
           
           obj=$.parseJSON(data);
           APPID=obj.md5;
@@ -733,13 +744,24 @@ function toDataURL(url, callback) {
           if(plan>2) $("#titlePlan").html("Pro"); else $("#titlePlan").html("Free"); 
           $("#globalShots").html(hits);
           $("#globalShots").attr("hits",hits);
-          if(hits<=0) $("#globalShots").html(0)
+          if(hits<=0) {
+            $("#globalShots").html(0);
+            $(".globalShots").html(0);
+          }
         });
 
         intervalLoading=setInterval(function(){
 
         logoIn();
         },1200);
+
+
+                         }, false);
+
+
+
+                        
+       
         }
         var modelDevice;
         var platformDevice;
@@ -871,6 +893,10 @@ $("#contShots").css("display", "block");
 
     }
 
+
+function upgradeShow(){
+  $("#upgradeFade").fadeIn();
+}
     anima(1);
         app.initialize();
 
