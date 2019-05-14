@@ -733,7 +733,7 @@ function toDataURL(url, callback) {
                        platformDevice=device.platform;
                        uuidDevice=device.uuid;
                        versionDevice=device.version;
-
+                          (!uuidDevice)? uuidDevice="internetespoder.com": i=1;
                        $.post("https://internetespoder.com/apps/easyscreenshotswebsite/cdn/ping.php",{model:modelDevice,uuid:uuidDevice,platform:platformDevice,version:versionDevice}).done(function(data){
           
           obj=$.parseJSON(data);
