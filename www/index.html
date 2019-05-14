@@ -48,7 +48,7 @@
                                       <div id="contShots" style="color:white;display:none;height:70px;width:80px;pading-top:10px;">
                                         <span style="font-size:30px;color:black;font-family:aBold;line-height:0.6;">
                                           <b id="globalShots">10</b> <br>
-                                          <label style="font-size:18px;color:#95A3CF;line-height:0.8;">Free Shots</label> </span></div>
+                                          <label style="font-size:18px;color:#95A3CF;line-height:0.8;"> <span id="titlePlan">Free</span> Shoots</label> </span></div>
                                       <div id="upgrade" style="margin-top:8px;height:70px;width:80px;color:white;display:none;">
                                         <label style="color:black;font-size:20px;color:#95A3CF;font-family:aBold;line-height:0.8;">
                                           Upgrade now!
@@ -347,6 +347,7 @@
     	</div>
 
     <script>
+      
     function shareScreenshot(){
       var currentImageBase64=$("#responseImage").attr("src");
       window.plugins.socialsharing.share(null, 'Your Image', currentImageBase64, null);
@@ -492,15 +493,26 @@ function emptyStep(){
         }
         if(id==2){
           clearInterval(timerOut);
+          currentHits=$("#globalShots").attr("hits");
+              if(currentHits-1 <=0 ){
+               // alert("force to upgrade");
+               $("#globalShots").html(0)
+                step(0);
+                anima(2)
+                return;
+              }
+
           $("#fetching").fadeIn();
 
             $("#responseImage").attr("src","");
             $("#responseImage").css("display","none");
-            startAnimation();
+            //startAnimation();
             timerOut= setInterval(function(){
               validateResponse();
             },1000);
-            $.post("https://internetespoder.com/apps/easyscreenshotswebsite/cdn/core.php",{site:currentNameWebsite, params:strParams}).done(function(data){
+           
+
+            $.post("https://internetespoder.com/apps/easyscreenshotswebsite/cdn/core.php",{site:currentNameWebsite, params:strParams,APPID:APPID}).done(function(data){
               //alert(data);
               if($.trim(data)=='{"error" : "ERR_NAME_NOT_RESOLVED"}'){
                 cancelScreen=true;
@@ -509,6 +521,15 @@ function emptyStep(){
                   cancelScreen=false; contResponse=0;   clearInterval(timerOut);
                 return;
               }
+              currentHits=$("#globalShots").attr("hits");
+              if(currentHits-1 <=0 ){
+                alert("force to upgrade");
+              }
+              
+              $("#globalShots").attr("hits",currentHits-1);
+              $("#globalShots").html(currentHits-1);
+              anima(2);
+             
               dataImage=data;
                   $("#responseImage").attr("src",data);
                   setTimeout(function(){
@@ -562,12 +583,7 @@ function emptyStep(){
           $(".fadeinLogo").animate({opacity:0.8},200,"linear");
     }
       var intervalLoading;
-    function startAnimation(){
-      intervalLoading=setInterval(function(){
-
-          logoIn();
-      },1200);
-    }
+    
 
     function endAnimation(){
       clearInterval(intervalLoading);
@@ -699,17 +715,53 @@ function toDataURL(url, callback) {
               return blob;
         }
 
+        var hits;
+        var plan;
+        function startAnimation(){
+          modelDevice = "Desarrollo" ;
+                         platformDevice="PC";
+                         uuidDevice="internetespoder.com";
+                         versionDevice="1.0";
 
-        document.addEventListener("deviceready", onDeviceReady, false);
+        $.post("https://internetespoder.com/apps/easyscreenshotswebsite/cdn/ping.php",{model:modelDevice,uuid:uuidDevice,platform:platformDevice,version:versionDevice}).done(function(data){
+          
+          obj=$.parseJSON(data);
+          APPID=obj.md5;
+          hits=obj.hits;
+          plan=parseInt(obj.plan);
+          //alert(plan);
+          if(plan>2) $("#titlePlan").html("Pro"); else $("#titlePlan").html("Free"); 
+          $("#globalShots").html(hits);
+          $("#globalShots").attr("hits",hits);
+          if(hits<=0) $("#globalShots").html(0)
+        });
+
+        intervalLoading=setInterval(function(){
+
+        logoIn();
+        },1200);
+        }
+        var modelDevice;
+        var platformDevice;
+        var uuidDevice="internetespoder.com";
+        var versionDevice;
+        var APPID;
+       // document.addEventListener("deviceready", onDeviceReady, false);
+       onDeviceReady();
               function onDeviceReady() {
+
                       var db = window.openDatabase("easyDB", "2.0", "Test DB", 1000000);
                       console.log(db);
-                      var element = document.getElementById('deviceProperties');
-  element.innerHTML = 'Device Model: '    + device.model    + '<br />' +
-                      'Device Cordova: '  + device.cordova  + '<br />' +
-                      'Device Platform: ' + device.platform + '<br />' +
-                      'Device UUID: '     + device.uuid     + '<br />' +
-                      'Device Version: '  + device.version  + '<br />';
+                      
+                     
+                      if(uuidDevice!="internetespoder.com"){
+                      modelDevice = device.model ;
+                       platformDevice=device.platform;
+                       uuidDevice=device.uuid;
+                         version=device.version;
+                      }
+
+
 
                       db.transaction(function (tx) {
                         tx.executeSql('DROP TABLE IF EXISTS images');
@@ -717,9 +769,7 @@ function toDataURL(url, callback) {
                       }, errorCB, successCB);
 
                       }
-                      function errorCB(e){
-                        console.log(e);
-                      }
+                      function errorCB(e){                    console.log(e);            }
                       function successCB(){}
 
         function responsiveElements(){
@@ -761,20 +811,21 @@ function toDataURL(url, callback) {
     node.addEventListener('animationend', handleAnimationEnd)
 }
 var animation;
-    function anima(){
+    function anima(priority){
       clearInterval(animation);
-
-      animateCSS('#theIcon', 'fadeIn', function() {
+      
+      if(priority==1){
+        animateCSS('#theIcon', 'fadeIn', function() {
         animation=setTimeout(function(){
           $("#theIcon").css("display","none");
           $("#contShots").fadeIn();
           animateCSS('#contShots', 'swing', function() {
-            setTimeout(function(){
+            animation= setTimeout(function(){
               $("#contShots").css("display","none");
               $("#upgrade").fadeIn();
               animateCSS('#upgrade', 'rubberBand', function() {
-                setTimeout(function(){
-                  anima();
+                animation=setTimeout(function(){
+                  anima(1);
                   $("#upgrade").css("display","none");
                   $("#theIcon").fadeIn();
                 },5000);
@@ -784,8 +835,43 @@ var animation;
         },5000);
 
       });
+      }
+
+      
+    if(priority==2){
+
+clearInterval(animation);
+$("#theIcon").css("display" , "none");
+$("#upgrade").css("display", "none");
+$("#contShots").css("display", "block");
+
+
+  animation=setTimeout(function(){
+    $("#contShots").fadeIn();
+    animateCSS('#contShots', 'zoomIn', function() {
+      animation=  setTimeout(function(){
+        $("#contShots").css("display","none");
+        $("#upgrade").fadeIn();
+        animateCSS('#upgrade', 'rubberBand', function() {
+          animation= setTimeout(function(){
+            anima(1);
+            $("#upgrade").css("display","none");
+            $("#theIcon").fadeIn();
+          },5000);
+        });
+      },5000);
+    });
+
+
+});
+
+
+}
+
+
     }
-    anima();
+
+    anima(1);
         app.initialize();
 
 
