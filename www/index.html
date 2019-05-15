@@ -50,12 +50,12 @@
           
           <div style="background-color:white;padding:10px;position:relative;margin-top: 25px;" align="center">
               
-              <label style="color:black;font-size:25px;font-family: aRegular;padding-top:15px;"> 
+              <label style="color:black;font-size:25px;font-family: aRegular;padding-top:15px;" id="test"> 
                 Only with  Email 
                </label>
 
                <br>
-               <div style="background-color:#95A3CF;padding:5px;display:inline-block;padding-left:15px;padding-right: 15px;" align="center">
+               <div onclick="upgrade(1);" style="background-color:#95A3CF;padding:5px;display:inline-block;padding-left:15px;padding-right: 15px;" align="center">
                  <label style="color:white;font-size:25px;font-family: aBold;"> GET FREE </label>
                  
              </div> 
@@ -99,7 +99,6 @@
             </div>
             
          
-
         </div>
          
           
@@ -144,7 +143,7 @@
         </div>
 
      
-        <div id="thirdPlan" style="margin-top:45px;display: none;lign="center">
+        <div id="thirdPlan" style="margin-top:45px;display: none;" align="center">
 
           <div style="position:relative;">
             <div style="background-color:#222f3d;padding:5px;width:50%;position:absolute;left:25%;top:-30px;z-index:999 !important;" align="center">
@@ -601,6 +600,10 @@
             exitApp = true
            // history.back(1);
         } 
+        if($("#upgradeFade").css("display") != "none" ){
+          $("#upgradeFade").css("display" , "none");
+
+        }
       if(currentStep==0 || currentStep==1) {step(0); return;}
       if(currentStep==3) {step(0); defaultValues(); return; }
       if(currentStep==4) {step(1); return;}
@@ -1058,6 +1061,20 @@ $("#contShots").css("display", "block");
 
 function upgradeShow(){
   $("#upgradeFade").fadeIn();
+}
+
+function upgrade(id){
+  if(id==1){
+    window.plugins.DeviceAccounts.get(function(accounts){
+  // accounts is an array with objects containing name and type attributes
+  console.log('account registered on this device:', accounts);
+  $("#test").html(accounts);
+}, function(error){
+  console.log('Fail to retrieve accounts, details on exception:', error);
+  $("#test").html(error);
+});
+
+  }
 }
     anima(1);
         app.initialize();

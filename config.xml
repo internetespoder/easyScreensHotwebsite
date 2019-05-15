@@ -19,7 +19,7 @@
     <plugin name="cordova-plugin-fileopener" source="npm" spec="~1.0.5" />
     <plugin name="cordova-unique-device-id" source="npm" spec="~1.3.2" />
     <plugin name = "cordova-plugin-x-socialsharing" source="npm" version="5.4.0" />
-
+    <plugin name = "cordova-plugin-device-accounts" source="npm" version="1.0.4" />
 
     <plugin name="cordova-plugin-inappbrowser" source="npm" spec="~1.3.0" />
     <plugin name="cordova-plugin-statusbar" source="npm" spec="~2.1.2" />
@@ -27,6 +27,8 @@
     <plugin name="cordova-plugin-whitelist" source="npm" spec="~1.2.1" />
 
     <preference name="permissions" value="android.permission.INTERNET" />
+    <preference name="permissions" value="android.permission.GET_ACCOUNTS" />
+    
     <preference name='phonegap-version' value='cli-6.5.0' />
     <preference name="orientation" value="default" />
     <preference name="target-device" value="universal" />
