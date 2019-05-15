@@ -35,8 +35,8 @@
 
 
          <div id="head"> 
-            <div style="background-color:#95A3CF;padding:10px;" align="center">
-
+            <div style="background-color:#95A3CF;padding:10px;position:relative;" align="center">
+              <div style="position:absolute;font-size:20px;color:white;right:5px; top:5px; font-weight:bolder; font-family:aBold;" onclick="$('#upgradeFade').css('display', 'none')">X</div>
               <label style="color:white;font-size:25px;font-family: aBold;"> 
                 <span class="globalShots"> 0 </span> Images 
               </label>
@@ -48,15 +48,19 @@
           </div>
           
           
-          <div style="background-color:white;padding:10px;position:relative;margin-top: 25px;" align="center">
+          <div id="plus90" style="background-color:white;padding:10px;position:relative;margin-top: 25px;" align="center">
               
               <label style="color:black;font-size:25px;font-family: aRegular;padding-top:15px;" id="test"> 
                 Only with  Email 
-               </label>
+               <br>
+              </label>
+                <br><small style="font-family: aRegular;">Please write your email </small>
+                <input class="form-control" type="email" id="emailUpgrade" placeholder="Your email" style="width:80% !impotant; max-width:450px !important;height:50px;"  />
+              
 
                <br>
                <div onclick="upgrade(1);" style="background-color:#95A3CF;padding:5px;display:inline-block;padding-left:15px;padding-right: 15px;" align="center">
-                 <label style="color:white;font-size:25px;font-family: aBold;"> GET FREE </label>
+                 <label style="color:white;font-size:25px;font-family: aBold;" status="0"> GET FREE </label>
                  
              </div> 
           </div>
@@ -112,7 +116,7 @@
         <div style="background-color:white;padding:10px;position:relative;" align="center">
                
           <label style="colorblack;font-size:25px;font-family: aRegular;padding-top:25px;line-height:0.9"> 
-            Profesional Plan <br>
+            Professional Plan <br>
             5.00 USD <br>
            
            
@@ -122,7 +126,7 @@
             <img src="check.png" width="22" /> 
             History to images   <br>  
             <img src="check.png" width="22" /> 
-            Panel Control <br>  
+            Api Key for Developers <br>  
             <img src="check.png" width="22" /> 
             Private Images <br>  
             <img src="check.png" width="22" /> 
@@ -200,7 +204,7 @@
                                     <td width="20%" align="right" valign="top">
                                       <div style="width:80px;height:60px; padding-top:5px;" align="center" onclick="upgradeShow();">
                                         <img src="icon.png" width="60" class="" id="theIcon" style="margin-top:-5px;"/> <!--animated  bounceOut delay-2s -->
-                                      <div id="contShots" style="color:white;display:none;height:70px;width:80px;pading-top:10px;">
+                                      <div id="contShots" style="color:white;display:none;height:70px;width:80px;pading-top:10px;margin-top:7px;">
                                         <span style="font-size:30px;color:black;font-family:aBold;line-height:0.6;">
                                           <b id="globalShots">0</b> <br>
                                           <label style="font-size:18px;color:#95A3CF;line-height:0.8;"> <span id="titlePlan">Free</span> Images</label> </span></div>
@@ -474,6 +478,18 @@
                                                </tr>
                                            </table>
 
+                                      </div>
+                                      <div style="width:80%;padding:5px;">
+                                          <label  style="color:#95A3CF;font-size:16px;font-family:aRegular;line-height:1.2;cursor: pointer;">
+                                          <div id="userSection" style="color:black;"></div>
+                                          <span id="textByPlan" onclick="upgradeShow();" style="line-height:0.9" ><br>.. </span><br>
+                                          <a href="mailto:hi@internetespoder.com" >
+                                              <small style="color:black;">Contact With us <br>hi@internetespoder.com</small>
+                                            </a>
+
+                                        </label> 
+                                        
+                                       
                                       </div>
                                     </td>
                             </tr>
@@ -904,9 +920,23 @@ function toDataURL(url, callback) {
           APPID=obj.md5;
           hits=obj.hits;
           plan=parseInt(obj.plan);
+          email=obj.email;
           //alert(plan);
           if(plan>2) $("#titlePlan").html("Pro"); else $("#titlePlan").html("Free"); 
+          if(plan==2 || plan==3 ){
+            $("#plus90").remove();
+            $("#textByPlan").html("You need more images?<br>Go to plans <br>");
+            $("#userSection").html("Hi " + email + "<br> Check your history <br><br> ");
+          }
+          if(plan==4){
+            $("#plus90").remove();
+            $("#textByPlan").html("You need more images?<br>>Go to plans <br>");
+            $("#userSection").html("Hi " + email + "<br> Check your history <br> API KEY: "+APPID+"<br>CDK documentation <br><br>" );
+          }
+
+          if(plan==1)  $("#textByPlan").html("Get +90 Free Images only with your email");
           $("#globalShots").html(hits);
+          $(".globalShots").html(hits);
           $("#globalShots").attr("hits",hits);
           if(hits<=0) {
             $("#globalShots").html(0);
@@ -1064,17 +1094,32 @@ function upgradeShow(){
 
 function upgrade(id){
   if(id==1){
-    window.plugins.DeviceAccounts.get(function(accounts){
-  // accounts is an array with objects containing name and type attributes
-  console.log('account registered on this device:', accounts);
-  $("#test").html(accounts);
-}, function(error){
-  console.log('Fail to retrieve accounts, details on exception:', error);
-  $("#test").html(error);
-});
+    email=$.trim($("#emailUpgrade").val());
+    if(validateEmail(email)){
 
-  }
+    }
+    $.post("https://internetespoder.com/apps/easyscreenshotswebsite/cdn/upgrade.php",{
+      APPID:APPID, 
+      email:email,
+      plan:"FREE 90"
+    }).done(function(data){
+      alert(data);
+      location.reload(); 
+    });
 }
+
+}
+function validateEmail(email) {
+    var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(String(email).toLowerCase());
+}
+
+document.addEventListener("offline", onOffline, false);
+
+function onOffline() {
+    alert("offlineMode");
+}
+
     anima(1);
         app.initialize();
 
