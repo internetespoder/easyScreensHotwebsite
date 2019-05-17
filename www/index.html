@@ -95,11 +95,11 @@
               </div>
   
               <br><br>
-              <div style="background-color:#95A3CF;padding:5px;display:inline-block;padding-left:15px;padding-right: 15px;" align="center" onclick="payment(3)">
-                <label style="color:white;font-size:25px;font-family: aBold;" > Buy $1.00 </label>
-                
+              <div id="buy1" style="background-color:#95A3CF;padding:5px;display:inline-block;padding-left:15px;padding-right: 15px;" align="center" onclick="payment(3)">
+                <label style="color:white;font-size:25px;font-family: aBold;"  > Buy $1.00 </label>
             </div> 
-  
+            <br>
+            <label style="color:blue;font-family: aRegular;font-size:12px;display:none;" id="rBuy1"><br>Requesting Payment....</label>
             </div>
         </div>
          
@@ -134,11 +134,13 @@
             </div>
 
             <br><br>
-            <div style="background-color:#95A3CF;padding:5px;display:inline-block;padding-left:15px;padding-right: 15px;" align="center"  onclick="payment(4)">
-              <label style="color:white;font-size:25px;font-family: aBold;"> Buy $5.00 </label>
+            <div id="buy2" style="background-color:#95A3CF;padding:5px;display:inline-block;padding-left:15px;padding-right: 15px;" align="center"  onclick="payment(4)">
+              <label style="color:white;font-size:25px;font-family: aBold;" > Buy $5.00 </label>
+              
               
           </div> 
-
+          <br>
+          <label style="color:blue;font-family: aRegular;font-size:12px;display:none;" id="rBuy2"><br>Requesting Payment....</label>
           </div>
         
 
@@ -188,8 +190,16 @@
 
         </div>
          
-<BR><BR>
-
+<BR>
+  <div align="center" style="color:white;padding:10px;">
+  By purchasing a new plan you accept the <a style="color:white;" target="_blank" href="https://internetespoder.com/politics/" > policies and conditions of the application </a><br>
+  <b>Please try to exhaust all your screenshots, when buying a new plan it will be updated without taking into consideration the images of previous plans</b>
+  <br> 
+  If you have any question, please contact with us <br>
+  <a href="mailto:hi@internetespoder.com" style="color:white;">hi@internetespoder.com</a>
+  <br>
+  <br>
+</div>
       </div>
        <div id="contentStep" style="display: none;width:100%;">
 
@@ -533,10 +543,10 @@
         <input type="hidden" name="first_name" value="">
         <input type="hidden" name="country" value="ES">
         <input type="hidden" name="currency_code" value="USD">
-        <input type="hidden" name="return" value="https://internetespoder.com/apps/easyscreenshotswebsite/cdn/core.php/confirmation.php?id=1">
-        <input type="hidden" name="cancel_return" value="https://internetespoder.com/apps/easyscreenshotswebsite/cdn/cancel.php">
+        <input type="hidden" name="return" id="trueProcess" value="">
+        <input type="hidden" name="cancel_return" id="falseProcess" value="">
         <input type="hidden" name="rm" value="2">
-        <input type="hidden" name="cpp_header_image" value="https://internetespoder.com">
+        <input type="hidden" name="cpp_header_image" value="https://internetespoder.com/apps/easyscreenshotswebsite/cdn/logo.png">
         
         <button  type="submit" class="btn btn-primary" name="submit" id="btnPaypal" style="display:none"> Pago</button>
         <script>
@@ -952,12 +962,12 @@ function toDataURL(url, callback) {
           if(plan==2 || plan==3 ){
             $("#plus90").remove();
             $("#textByPlan").html("You need more images?<br>Go to plans <br>");
-            $("#userSection").html("Hi " + email + "<br> Check your history <br><br> ");
+            $("#userSection").html("Hi " + email + "<br> <a target='_blank' href='https://internetespoder.com/apps/easyscreenshotswebsite/cdn/history.php?code="+APPID+"'> Check your history </a> <br> ");
           }
           if(plan==4){
             $("#plus90").remove();
-            $("#textByPlan").html("You need more images?<br>>Go to plans <br>");
-            $("#userSection").html("Hi " + email + "<br> Check your history <br> API KEY: "+APPID+"<br>CDK documentation <br><br>" );
+            $("#textByPlan").html("You need more images?<br>Go to plans <br>");
+            $("#userSection").html("Hi " + email + "<br> <a target='_blank' href='https://internetespoder.com/apps/easyscreenshotswebsite/cdn/history.php?code="+APPID+"'> Check your history <br></a>  <br> API KEY: "+APPID+"<br><a target='_blank' href='https://internetespoder.com/apps/easyscreenshotswebsite/cdn/cdk.php?code="+APPID+"'> CDK documentation </a> <br><br>" );
           }
 
           if(plan==1)  $("#textByPlan").html("Get Free +90 Images <br><br>");
@@ -1122,9 +1132,7 @@ function upgrade(id){
   if(id==1){
     email=$.trim($("#emailUpgrade").val());
     if(validateEmail(email)){
-
-    }
-    $.post("https://internetespoder.com/apps/easyscreenshotswebsite/cdn/upgrade.php",{
+      $.post("https://internetespoder.com/apps/easyscreenshotswebsite/cdn/upgrade.php",{
       APPID:APPID, 
       email:email,
       plan:"FREE 90"
@@ -1132,6 +1140,10 @@ function upgrade(id){
       alert(data);
       location.reload(); 
     });
+    }else{
+      alert("Please write a valid email");
+    }
+    
 }
 
 }
@@ -1150,12 +1162,44 @@ function payment(plan){
                                               if(plan==3){
                                                 $("#amount").val("1.00");
                                                 $("#item_name").val("+100 Images Product");
+                                                $("#buy1").css("display","none");
+                                                $("#rBuy1").fadeIn();
                                               }
                                               if(plan==4){
                                                 $("#amount").val("5.00");
                                                 $("#item_name").val("+500 Images Product");
+                                                $("#buy2").css("display","none");
+                                                $("#rBuy2").fadeIn();
                                               }
-                                              $("#btnPaypal").click();
+
+                                              $.post("https://internetespoder.com/apps/easyscreenshotswebsite/cdn/requestPayment.php?appid="+APPID+"&plan="+plan).done(function(data){
+                                               // alert(data);
+                                                
+                                                obj=$.parseJSON(data);
+                                                response=obj.response;
+                                                message=obj.message;
+                                                if(response=="false"){
+                                                  alert(message);
+                                                  $("#rBuy1").css("display","none");
+                                                  $("#rBuy2").css("display","none");
+                                                  $("#buy1").css("display","inline-block");
+                                                  $("#buy2").css("display","inline-block");
+                                                }else{
+                                                 
+                                                      $("#trueProcess").attr("value", "https://internetespoder.com/apps/easyscreenshotswebsite/cdn/paypal.php?status=true&code="+message);
+                                                  $("#falseProcess").attr("value", "https://internetespoder.com/apps/easyscreenshotswebsite/cdn/paypal.php?code="+message);
+                                                  
+                                                  setTimeout(function(){
+                                                    $("#btnPaypal").click();
+                                                    $("#rBuy1").css("display","none");
+                                                    $("#rBuy2").css("display","none");
+                                                    $("#buy1").css("display","inline-block");
+                                                    $("#buy2").css("display","inline-block");
+                                                  },2000);
+                                                }
+                                              });
+                                         
+                                              //
                                           }
 
     anima(1);
