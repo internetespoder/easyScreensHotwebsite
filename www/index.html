@@ -36,12 +36,12 @@
 
          <div id="head"> 
             <div style="background-color:#95A3CF;padding:10px;position:relative;" align="center">
-              <div style="position:absolute;font-size:20px;color:white;right:5px; top:5px; font-weight:bolder; font-family:aBold;" onclick="$('#upgradeFade').css('display', 'none')">X</div>
+              <div style="position:absolute;font-size:35px;color:white;right:15px; top:5px; font-weight:bolder; font-family:aBold;" onclick="$('#upgradeFade').css('display', 'none')">X</div>
               <label style="color:white;font-size:25px;font-family: aBold;"> 
                 <span class="globalShots"> 0 </span> Images 
               </label>
           </div>
-          <div style="position:relative">
+          <div style="position:relative" id="plus90Title">
               <div style="background-color:#222f3d;padding:5px;width:50%;position:absolute;left:25%;top:0px;z-index:999 !important;" align="center">
                   <label style="color:white;font-size:25px;font-family: aBold;"> FREE +90 Images </label>
               </div>
@@ -88,10 +88,7 @@
             <div align="left" style="color:black;font-size:22px;font-family: aItalic;padding-top:15px;line-height:1.0;display:inline-block;">
               <img src="check.png" width="22" /> 
               History to images   <br>  
-             <img src="check.png" width="22" /> 
-              Private Images <br>  
-              <img src="check.png" width="22" /> 
-              Without Water mark 
+              
               </div>
   
               <br><br>
@@ -127,10 +124,7 @@
             History to images   <br>  
             <img src="check.png" width="22" /> 
             Api Key for Developers <br>  
-            <img src="check.png" width="22" /> 
-            Private Images <br>  
-            <img src="check.png" width="22" /> 
-            Without Water mark 
+            
             </div>
 
             <br><br>
@@ -476,12 +470,12 @@
                             <tr>
                                     <td valign="top" align="center">
                                         <div align="center" style="margin-top:10px;"><label style="color:#6B5A5F;font-size:20px;font-family:aRegular;line-height:0.9;cursor: pointer;" id="deviceProperties"> Please write the name of website</label></div>
-                                      <input id="domain" type="url" name="url" class="form-control" style="font-family:aRegular;text-align: center; height: 60px;font-size: 28px;text-transform: lowercase;max-width:500px;" placeholder=""  autocomplete="off" >
+                                      <input id="domain" onkeyup="if(event.keyCode==13) $('#nxt').click(); " type="url" name="url" class="form-control" style="font-family:aRegular;text-align: center; height: 60px;font-size: 28px;text-transform: lowercase;max-width:500px;" placeholder=""  autocomplete="off" >
 
 
                                       
 
-                                      <div style="margin-top:15px;background-color: #95A3CF; width: 200px;height: 40px;padding:5px;cursor: pointer;margin-bottom:50px;max-width:500px;" class="responsive" onclick='  step(1);'>
+                                      <div id="nxt" style="margin-top:15px;background-color: #95A3CF; width: 200px;height: 40px;padding:5px;cursor: pointer;margin-bottom:50px;max-width:500px;" class="responsive" onclick='  step(1);'>
                                            <table width="100%" height="100%">
 
                                                <tr>
@@ -950,6 +944,7 @@ function toDataURL(url, callback) {
                        uuidDevice=device.uuid;
                        versionDevice=device.version;
                           (!uuidDevice)? uuidDevice="internetespoder.com": i=1;
+                          responsiveElements();
                        $.post("https://internetespoder.com/apps/easyscreenshotswebsite/cdn/ping.php",{model:modelDevice,uuid:uuidDevice,platform:platformDevice,version:versionDevice}).done(function(data){
           
           obj=$.parseJSON(data);
@@ -961,11 +956,12 @@ function toDataURL(url, callback) {
           if(plan>2) $("#titlePlan").html("Pro"); else $("#titlePlan").html("Free"); 
           if(plan==2 || plan==3 ){
             $("#plus90").remove();
+            $("#plus90Title").remove();
             $("#textByPlan").html("You need more images?<br>Go to plans <br>");
             $("#userSection").html("Hi " + email + "<br> <a target='_blank' href='https://internetespoder.com/apps/easyscreenshotswebsite/cdn/history.php?code="+APPID+"'> Check your history </a> <br> ");
           }
           if(plan==4){
-            $("#plus90").remove();
+            $("#plus90Title").remove();
             $("#textByPlan").html("You need more images?<br>Go to plans <br>");
             $("#userSection").html("Hi " + email + "<br> <a target='_blank' href='https://internetespoder.com/apps/easyscreenshotswebsite/cdn/history.php?code="+APPID+"'> Check your history <br></a>  <br> API KEY: "+APPID+"<br><a target='_blank' href='https://internetespoder.com/apps/easyscreenshotswebsite/cdn/cdk.php?code="+APPID+"'> CDK documentation </a> <br><br>" );
           }
