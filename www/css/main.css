@@ -15,3 +15,86 @@ body{  overflow-x:hidden;background-color: rgba(232,233,234,0.7);display:none; }
 #txt1{color:white;font-size:25px;font-family: aBold;}
 #plus90{background-color:white;padding:10px;position:relative;margin-top: 25px;}
 #txt2{color:black;font-size:25px;font-family: aRegular;padding-top:15px;}
+#txt3{font-family: aRegular;}
+#emailUpgrade{    width:80% !important; max-width:450px !important;height:50px; }
+#gFree{background-color:#95A3CF;display:inline-block;}
+#lGFree{color:white;font-size:25px;font-family: aBold;padding:5px 10px 0px 10px;}
+#firstPlan{margin-top:45px;}
+.relative{position:relative;}
+#content1{background-color:#222f3d;padding:5px;width:50%;position:absolute;left:25%;top:-30px;z-index:999 !important;}
+#content1 label{color:white;font-size:25px;font-family: aBold;}
+#content2{background-color:white;padding:10px;position:relative;}
+#lbl1{color:black;font-size:25px;font-family: aRegular;padding-top:25px;line-height:0.9;}
+#content3{color:black;font-size:22px;font-family: aItalic;padding-top:15px;line-height:1.0;display:inline-block;}
+#buy1{background-color:#95A3CF;display:inline-block;}
+#buy1 label{color:white;font-size:25px;font-family: aBold;padding:5px 10px 0px 10px;}
+#rBuy1{color:blue;font-family: aRegular;font-size:12px;display:none;}
+#secondPlan{margin-top:65px;}
+#content4{background-color:#222f3d;padding:5px;width:50%;position:absolute;left:25%;top:-30px;z-index:999 !important;}
+#content4 label{color:white;font-size:25px;font-family: aBold;}
+#content5{background-color:white;padding:10px;position:relative;}
+#content5 label{color:black;font-size:25px;font-family: aRegular;padding-top:25px;line-height:0.9}
+#content6{color:black;font-size:22px;font-family: aItalic;padding-top:15px;line-height:1.0;display:inline-block;}
+#buy2{background-color:#95A3CF;display:inline-block;padding:10px;}
+#buy2 label{color:white;font-size:25px;font-family: aBold;padding:5px 10px 0px 10px;}
+#rBuy2{color:blue;font-family: aRegular;font-size:12px;display:none;}
+#thirdPlan{margin-top:45px;display: none;}
+#content7{background-color:#222f3d;padding:5px;width:50%;position:absolute;left:25%;top:-30px;z-index:999 !important;}
+#content7 label{color:white;font-size:25px;font-family: aBold;}
+#content8{color:white;padding:10px;}
+.txtWhite{color:white;}
+#contentStep{display: none;width:100%;}
+.p10{padding-top:10px;}
+#txt4{color:#6B5A5F;font-size:28px;font-family:aBold;line-height:0.9;}
+#txt28{color:#95A3CF;font-size:26px;font-family:aBold;}
+#header{position:relative;left:0px;top:0px;width:100%;padding-top:3px;}
+#content9{width:80px;height:60px; padding-top:5px;}
+#theIcon{margin-top:-5px;}
+#contShots{color:white;display:none;height:70px;width:80px;padding-top:10px;margin-top:7px;}
+#span1{font-size:35px;color:black;font-family:aBold;line-height:0.6;}
+#lbl2{font-size:18px;color:#95A3CF;line-height:0.8;}
+#upgrade{margin-top:8px;height:70px;width:80px;color:white;display:none;}
+#lbl3{color:black;font-size:20px;color:#95A3CF;font-family:aBold;line-height:0.8;}
+#fourStep{display:none;left:0px;height:80%;width:100%;}
+.lbl4{color:#6B5A5F;font-size:23px;font-family:aItalic;}
+.span2{color:#95A3CF;}
+#lbl6{color:#6B5A5F;font-size:23px;font-family:aItalic;}
+#content10{margin-top:15px;background-color: #95A3CF; width: 100%;height: 40px;padding:5px;cursor: pointer;}
+.lbl7{color:white;font-size:20px;font-family:aBold;line-height:0.9;cursor: pointer;}
+#content11{margin-top:15px;background-color: #95A3CF; width: 100%;height: 40px;padding:5px;cursor: pointer;}
+#thirdStep{display:none;position:relative;left:0px;top:0px;height:auto;width:100%;}
+#lbl8{color:#95A3CF;font-size:28px;font-family:aBold;line-height:0.8;}
+#span3{color:#6B5A5F;font-size:23px;font-family:aItalic;}
+#content12{margin-top:15px;background-color: #95A3CF; width: 100%;height: 40px;padding:5px;cursor: pointer;}
+#lbl9{color:white;font-size:20px;font-family:aBold;line-height:0.9;cursor: pointer;}
+#content13{margin-top:10px;background-color: #95A3CF; width: 100%;height: 40px;padding:5px;cursor: pointer;}
+#lbl10{color:white;font-size:20px;font-family:aBold;line-height:0.9;cursor: pointer;}
+#fetching{display:none;left:0px;top:20%;height:80%;width:100%;}
+#lbl11{color:#6B5A5F;font-size:23px;font-family:aItalic;}
+#secondStep{display:none;left:0px;top:20%;height:80%;width:100%;}
+#lbl12{color:#6B5A5F;font-size:25px;font-family:aBold;line-height:0.9;margin-top:40px;;}
+#nameWebsite{color:#95A3CF;font-size:23px;font-family:aBold;}
+#content14{margin-top:15px;background-color: #95A3CF; width: 300px;height: 40px;padding:5px;cursor: pointer;}
+#lbl13{color:white;font-size:30px;font-family:aBold;line-height:0.9;cursor: pointer;}
+#content15{margin-top:15px;background-color: #95A3CF; width: 300px;height: 40px;padding:5px;cursor: pointer;}
+#withChanges{position:relative;width:100%;display:none;}
+#lbl14{color:white;font-size:30px;font-family:aBold;line-height:0.9;cursor: pointer;}
+#firstStep{display:none;left:0px;top:20%;height:80%;width:100%;}
+.m10{margin-top:10px;}
+#lbl15{color:#6B5A5F;font-size:20px;font-family:aRegular;line-height:0.9;cursor: pointer;}
+#domain{font-family:aRegular;text-align: center; height: 60px;font-size: 28px;text-transform: lowercase;max-width:500px;}
+#nxt{margin-top:15px;background-color: #95A3CF; width: 200px;height: 40px;padding:5px;cursor: pointer;margin-bottom:50px;max-width:500px;}
+#lbl15{color:white;font-size:30px;font-family:aBold;line-height:0.9;cursor: pointer;}
+#content16{width:80%;padding:5px;}
+#lbl16{color:#95A3CF;font-size:16px;font-family:aRegular;line-height:1.2;cursor: pointer;}
+.cb{color:black;}
+#txtByPlan{line-height:0.9}
+#loadingPage{position:absolute;left:0px;top:0px;height:100%;width:100%;}
+#lbl17{color:#6B5A5F;font-size:28px;font-family:aBold;line-height:0.8;}
+#lbl18{color:#95A3CF;font-size:33px;font-family:aBold;line-height:0.8;}
+#lbl19{color:#95A3CF;font-size:23px;font-family:aItalic;line-height:0.8;}
+#lbl20{color:#6B5A5F;font-size:23px;font-family:aItalic;}
+#content17{margin-top:15px;background-color: #95A3CF; width: 100%;height: 40px;padding:5px;cursor: pointer;}
+#lbl21{color:white;font-size:20px;font-family:aBold;line-height:0.9;cursor: pointer;}
+#btnPaypal{display:none;}
+#rBuy0{color:blue;font-family: aRegular;font-size:12px;display:none;}

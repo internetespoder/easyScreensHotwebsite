@@ -3,11 +3,9 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-
     <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
     <meta name='viewport' content='width=device-width'>
     <title>Easy Websites Screenshots 1.0</title>
-
      <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-touch-fullscreen" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
@@ -34,127 +32,113 @@
           </div>
           <div id="plus90"  align="center">
               <label  id="txt2"> Only with  Email<br></label>
-                <br><small style="font-family: aRegular;">Please write your email </small>
-                <input class="form-control" type="email" id="emailUpgrade" placeholder="Your email" style="width:80% !important; max-width:450px !important;height:50px;"  />
+                <br><small id="txt3">Please write your email </small>
+                <input class="form-control" type="email" id="emailUpgrade" placeholder="Your email"   />
                <br>
-               <div onclick="upgrade(1);" style="background-color:#95A3CF;padding:5px;display:inline-block;padding-left:15px;padding-right: 15px;" align="center">
-                 <label style="color:white;font-size:25px;font-family: aBold;" status="0"> GET FREE </label>
-             </div> 
+               <div onclick="upgrade(1);" id="gFree" align="center">
+                 <label id="lGFree" status="0"> GET FREE </label>
+             </div>  
+             <label id="rBuy0"><br>Requesting Payment....</label>
           </div>
          </div>
-          <div id="firstPlan" style="margin-top:45px;">
-            <div style="position:relative;">
-              <div style="background-color:#222f3d;padding:5px;width:50%;position:absolute;left:25%;top:-30px;z-index:999 !important;" align="center">
-                  <label style="color:white;font-size:25px;font-family: aBold;"> +100 Images </label>
+          <div id="firstPlan"  >
+            <div class="relative" >
+              <div id="content1" align="center">
+                  <label > +100 Images </label>
               </div>
-          </div>
-  
-          <div style="background-color:white;padding:10px;position:relative;" align="center">
-                 
-            <label style="color:black;font-size:25px;font-family: aRegular;padding-top:25px;line-height:0.9"> 
-              Basic Plan <br>
-              1.00 USD <br>
-            </label>
-            <br>
-            <div align="left" style="color:black;font-size:22px;font-family: aItalic;padding-top:15px;line-height:1.0;display:inline-block;">
+          </div>  
+          <div id="content2" align="center">     
+            <label id="lbl1"> Basic Plan <br> 1.00 USD <br> </label>        <br>
+            <div align="left" id="content3">
               <img src="check.png" width="22" /> 
               History to images   <br>  
               </div>
               <br><br>
-              <div id="buy1" style="background-color:#95A3CF;padding:5px;display:inline-block;padding-left:15px;padding-right: 15px;" align="center" onclick="payment(3)">
-                <label style="color:white;font-size:25px;font-family: aBold;"  > Buy $1.00 </label>
+              <div id="buy1" align="center" onclick="payment(3)">
+                <label   > Buy $1.00 </label>
             </div> 
             <br>
-            <label style="color:blue;font-family: aRegular;font-size:12px;display:none;" id="rBuy1"><br>Requesting Payment....</label>
+            <label id="rBuy1"><br>Requesting Payment....</label>
             </div>
         </div>
-        <div id="secondPlan" style="margin-top:65px;" align="center">
-          <div style="position:relative;">
-            <div style="background-color:#222f3d;padding:5px;width:50%;position:absolute;left:25%;top:-30px;z-index:999 !important;" align="center">
-                <label style="color:white;font-size:25px;font-family: aBold;"> +500 Images </label>
+        <div id="secondPlan" align="center">
+          <div class="relative">
+            <div id="content4" align="center">
+                <label > +500 Images </label>
             </div>
         </div>
-        <div style="background-color:white;padding:10px;position:relative;" align="center">  
-          <label style="color:black;font-size:25px;font-family: aRegular;padding-top:25px;line-height:0.9"> 
-            Professional Plan <br>
-            5.00 USD <br>
+        <div id="content5" align="center">  
+          <label > 
+            Professional Plan <br>    5.00 USD <br>
           </label>
           <br>
-          <div align="left" style="color:black;font-size:22px;font-family: aItalic;padding-top:15px;line-height:1.0;display:inline-block;">
-            <img src="check.png" width="22" /> 
-            History to images   <br>  
-            <img src="check.png" width="22" /> 
-            Api Key for Developers <br>  
+          <div align="left" id="content6">
+            <img src="check.png" width="22" />          History to images   <br>  
+            <img src="check.png" width="22" />      Api Key for Developers <br>  
             </div>
-            <br><br>
-            <div id="buy2" style="background-color:#95A3CF;padding:5px;display:inline-block;padding-left:15px;padding-right: 15px;" align="center"  onclick="payment(4)">
-              <label style="color:white;font-size:25px;font-family: aBold;" > Buy $5.00 </label>
+            <br><br>  
+            <div id="buy2" align="center"  onclick="payment(4)">
+              <label> Buy $5.00 </label>
           </div> 
           <br>
-          <label style="color:blue;font-family: aRegular;font-size:12px;display:none;" id="rBuy2"><br>Requesting Payment....</label>
+          <label  id="rBuy2"><br>Requesting Payment....</label>
           </div>
         </div>
-        <div id="thirdPlan" style="margin-top:45px;display: none;" align="center">
-          <div style="position:relative;">
-            <div style="background-color:#222f3d;padding:5px;width:50%;position:absolute;left:25%;top:-30px;z-index:999 !important;" align="center">
-                <label style="color:white;font-size:25px;font-family: aBold;"> +1000 Images </label>
-
+        <div id="thirdPlan"  align="center">
+          <div class="relative">
+            <div id="content7" align="center">
+                <label> +1000 Images </label>
             </div>
         </div>
         </div>
 <BR>
-  <div align="center" style="color:white;padding:10px;">
-  By purchasing a new plan you accept the <a style="color:white;" target="_blank" href="https://internetespoder.com/politics/" > policies and conditions of the application </a><br>
+  <div align="center" id="content8">
+  By purchasing a new plan you accept the <a class="txtWhite" target="_blank" href="https://internetespoder.com/politics/" > policies and conditions of the application </a><br>
   <b>Please try to exhaust all your screenshots, when buying a new plan it will be updated without taking into consideration the images of previous plans</b>
   <br> 
-  If you have any question, please contact with us <br>
-  <a href="mailto:hi@internetespoder.com" style="color:white;">hi@internetespoder.com</a>
+  If you have any question, please contact with us <br> 
+  <a href="mailto:hi@internetespoder.com" class="txtWhite">hi@internetespoder.com</a>
   <br>
   <br>
 </div>
       </div>
-       <div id="contentStep" style="display: none;width:100%;">
-                    <div id="header" style="position:relative;left:0px;top:0px;width:100%;padding-top:3px;">
-                       <table width="100%" style="margin-top:0px;;">
+       <div id="contentStep" >
+                    <div id="header">
+                       <table width="100%">
                             <tbody><tr>
                                <td width="10%" align="left" valign="center"></td>
-                                    <td width="55%" align="left" valign="center" style="padding-top:10px;">
-                    <label style="color:#6B5A5F;font-size:28px;font-family:aBold;line-height:0.9;">Screenshot <span style="color:#95A3CF;font-size:26px;font-family:aBold;">Websites</span></label>
+                                    <td width="55%" align="left" valign="center" class="p10">
+                                      <label id="txt4"> Easy Screenshots <br> <center><span id="txt28">Websites &reg; </span></center></label>
                                 </td>
                                     <td width="20%" align="right" valign="top">
-                                      <div style="width:80px;height:60px; padding-top:5px;" align="center" onclick="upgradeShow();">
-                                        <img src="icon.png" width="60" class="" id="theIcon" style="margin-top:-5px;"/> <!--animated  bounceOut delay-2s -->
-                                      <div id="contShots" style="color:white;display:none;height:70px;width:80px;padding-top:10px;margin-top:7px;">
-                                        <span style="font-size:35px;color:black;font-family:aBold;line-height:0.6;">
+                                      <div id="content9" align="center" onclick="upgradeShow();">
+                                        <img src="icon.png" width="60" class="" id="theIcon"/> 
+                                      <div id="contShots" >
+                                        <span id="span1">
                                           <b id="globalShots">0</b> <br>
-                                          <label style="font-size:18px;color:#95A3CF;line-height:0.8;"> <span id="titlePlan">Free</span> Images</label> </span></div>
-                                      <div id="upgrade" style="margin-top:8px;height:70px;width:80px;color:white;display:none;">
-                                        <label style="color:black;font-size:20px;color:#95A3CF;font-family:aBold;line-height:0.8;">
-                                          Upgrade now!
-                                        </label> </div>
-
-</div>
+                                          <label id="lbl2"> <span id="titlePlan">Free</span> Images</label> </span></div>
+                                      <div id="upgrade">
+                                        <label id="lbl3">   Upgrade now!       </label> </div>
+                                      </div>
                                     </td>
                                     <td width="10%" align="left" valign="center"></td>
                             </tr>
 
                         </tbody></table>
                     </div>
-                    <div style="display:none;left:0px;height:80%;width:100%;" align="center" id="fourStep" align="center">
+                    <div  align="center" id="fourStep" align="center">
 
                       <table width="80%" height="">
                   				<tr>
                   						<td valign="center" width="50%">
-                                  <label style="color:#6B5A5F;font-size:23px;font-family:aItalic;">
-                                    Width in px
-                                  </label>
+                                  <label class="lbl4">   Width in px  </label>
                                   <input class="form-control" id="width" value="1200" type="number">
                               </td>
                             </tr>
-                            <tr>
+                            <tr>  
                               <td>
-                                  <label style="color:#6B5A5F;font-size:23px;font-family:aItalic;" onclick="alert($(this).attr('text'))" text="Is your height of page, if value is 0 the image is fullscreen">
-                                    Height in px <span style="color:#95A3CF;">(?)</span>
+                                  <label class="lbl4" onclick="alert($(this).attr('text'))" text="Is your height of page, if value is 0 the image is fullscreen">
+                                    Height in px <span class="span2">(?)</span>
                                   </label>
                                   <input class="form-control" id="height" value="0" type="number">
 
@@ -162,8 +146,9 @@
                   				</tr>
                           <tr>
                   						<td valign="center"  width="50%">
-                                  <label style="color:#6B5A5F;font-size:23px;font-family:aItalic;" onclick="alert($(this).attr('text'))" text="Specifies the timeout while the page loads, value 0 seconds is default">
-                                    Wait in sec <span style="color:#95A3CF;">(?)</span>
+                                  <label id="lbl6" onclick="alert($(this).attr('text'))" 
+                                  text="Specifies the timeout while the page loads, value 0 seconds is default">
+                                    Wait in sec <span class="span2">(?)</span>
                                   </label>
                                   <select class="form-control" id="wait">
                                     <option value="0"> No Wait </option>
@@ -183,8 +168,8 @@
                             </tr>
                             <tr>
                               <td>
-                                  <label style="color:#6B5A5F;font-size:23px;font-family:aItalic;" onclick="alert($(this).attr('text'))" text="select your image quality if the quality is higher, your file size will be bigger">
-                                    Quality <span style="color:#95A3CF;">(?)</span>
+                                  <label class="lbl4" onclick="alert($(this).attr('text'))" text="select your image quality if the quality is higher, your file size will be bigger">
+                                    Quality <span class="span2">(?)</span>
                                   </label>
                                   <select class="form-control" id="sQuality">
                                     <option value="20">Low</option>
@@ -198,27 +183,27 @@
                   				</tr>
                           <tr>
                   						<td valign="center"  width="50%">
-                                  <label onclick="alert($(this).attr('text'))" text="Send Paramteres to website via GET request with this especific format: param1=onecontent;param2=secondcontent;" style="color:#6B5A5F;font-size:23px;font-family:aItalic;">
-                                    Headers <span style="color:#95A3CF;">(?)</span>
+                                  <label onclick="alert($(this).attr('text'))" text="Send Paramteres to website via GET request with this especific format: param1=onecontent;param2=secondcontent;" class="lbl4">
+                                    Headers <span class="span2">(?)</span>
                                   </label>
-                                  <input class="form-control" id="headers" placeholder="param1=one;param2=two" type="text">
+                                  <input class="form-control" id="headers" placeholder="headers1=one;headers2=two" type="text">
                               </td>
                             </tr>
                             <tr>
                               <td>
-                                  <label onclick="alert($(this).attr('text'))" text="Set Cookies to yo page with this format: cookie1=yourcookie;cookie2=yourcookie;" style="color:#6B5A5F;font-size:23px;font-family:aItalic;">
-                                    Cookies <span style="color:#95A3CF;">(?)</span>
+                                  <label onclick="alert($(this).attr('text'))" text="Set Cookies to yo page with this format: cookie1=yourcookie;cookie2=yourcookie;" class="lbl4">
+                                    Cookies <span class="span2">(?)</span>
                                   </label>
                                   <input class="form-control" id="cookies" placeholder="cookie1=one;cookie2=two;" value="" type="text">
                   							</td>
                   				</tr>
                           <tr>
                             <td colspan="">
-                              <div style="margin-top:15px;background-color: #95A3CF; width: 100%;height: 40px;padding:5px;cursor: pointer;" class="shadowButton" onclick="saveSettings();">
+                              <div id="content10" class="shadowButton" onclick="saveSettings();">
                                    <table width="100%" height="100%">
                                        <tr>
                                             <td valign="center" align="center">
-                                                <label style="color:white;font-size:20px;font-family:aBold;line-height:0.9;cursor: pointer;">Save Settings
+                                                <label class="lbl7">Save Settings
                                    </label>
                                             </td>
                                        </tr>
@@ -229,11 +214,11 @@
                           </tr>
                           <tr>
                             <td colspan="">
-                              <div style="margin-top:15px;background-color: #95A3CF; width: 100%;height: 40px;padding:5px;cursor: pointer;" class="shadowButton" onclick="step(1);defaultValues();">
+                              <div id="content11" class="shadowButton" onclick="step(1);defaultValues();">
                                    <table width="100%" height="100%">
                                        <tr>
                                             <td valign="center" align="center">
-                                                <label style="color:white;font-size:20px;font-family:aBold;line-height:0.9;cursor: pointer;">Default Values
+                                                <label class="lbl7">Default Values
                                    </label>
                                             </td>
                                        </tr>
@@ -245,25 +230,24 @@
 
                   		</table>
                     </div>
-                    <div style="display:none;position:relative;left:0px;top:0px;height:auto;width:100%;" align="center" id="thirdStep" align="center">
+                    <div  align="center" id="thirdStep" align="center">
                       <table width="90%" height="">
                               <tr>
                                 <td colspan="2" align="center">
-
-                                  	<label style="color:#95A3CF;font-size:28px;font-family:aBold;line-height:0.8">
+                                  	<label id="lbl8">
                                       Awesome!
-                                      <br><span style="color:#6B5A5F;font-size:23px;font-family:aItalic;">Your picture has been captured successfully</span>
+                                      <br><span id="span3">Your picture has been captured successfully</span>
                                     </label>
                                     <br>
                                 </td>
                               </tr>
                               <tr>
-                                <td colspan="">
-                                  <div style="margin-top:15px;background-color: #95A3CF; width: 100%;height: 40px;padding:5px;cursor: pointer;" class="shadowButton" onclick="saveFile();">
+                                <td >
+                                  <div id="content17" class="shadowButton" onclick="saveFile();">
                                        <table width="100%" height="100%">
                                            <tr>
                                                 <td valign="center" align="center">
-                                                    <label style="color:white;font-size:20px;font-family:aBold;line-height:0.9;cursor: pointer;">Save in Device
+                                                    <label id="lbl21">Save in Device
                                        </label>
                                                 </td>
                                            </tr>
@@ -271,13 +255,12 @@
 
                                   </div>
                                 </td>
-                                <td colspan="">
-                                  <div style="margin-top:15px;background-color: #95A3CF; width: 100%;height: 40px;padding:5px;cursor: pointer;" class="shadowButton" onclick="shareScreenshot();">
+                                <td >
+                                  <div id="content12" class="shadowButton" onclick="shareScreenshot();">
                                        <table width="100%" height="100%">
                                            <tr>
                                                 <td valign="center" align="center">
-                                                    <label style="color:white;font-size:20px;font-family:aBold;line-height:0.9;cursor: pointer;">Share With
-                                       </label>
+                                                    <label id="lbl9">Share With  </label>
                                                 </td>
                                            </tr>
                                        </table>
@@ -287,11 +270,11 @@
                               </tr>
                               <tr>
                                 <td colspan="2">
-                                  <div style="margin-top:10px;background-color: #95A3CF; width: 100%;height: 40px;padding:5px;cursor: pointer;" class="shadowButton" onclick="step(0);defaultValues();">
+                                  <div id="content13" class="shadowButton" onclick="step(0);defaultValues();">
                                        <table width="100%" height="100%">
                                            <tr>
                                                 <td valign="center" align="center" >
-                                                    <label style="color:white;font-size:20px;font-family:aBold;line-height:0.9;cursor: pointer;">Try Again
+                                                    <label id="lbl10">Try Again
                                        </label>
                                                 </td>
                                            </tr>
@@ -310,46 +293,43 @@
                               </tr>
                       </table>
                     </div>
-                    <div style="display:none;left:0px;top:20%;height:80%;width:100%;" align="center" id="fetching">
+                    <div  align="center" id="fetching">
                       <table width="100%" height="70%">
                   				<tr>
                   						<td valign="center" align="center">
                                               <br><br>
                   								<img src="x400.png" class="fadeinLogo responsiveLogos" width="200" >
                   								<br><br>
-                  								<label style="color:#6B5A5F;font-size:23px;font-family:aItalic;">Fetching Image...</label>
+                  								<label id="lbl11">Fetching Image...</label>
                   							</td>
                   				</tr>
                   		</table>
 
                     </div>
-                    <div style="display:none;left:0px;top:20%;height:80%;width:100%;" align="center" id="secondStep">
+                    <div  align="center" id="secondStep">
                       <table width="80%" height="70%">
                           <tr>
                                   <td valign="center" align="center">
-                                      <div align="center"><label style="color:#6B5A5F;font-size:25px;font-family:aBold;line-height:0.9;margin-top:40px;;"> ¿Are you sure take a screenshot this site?</label>
-<br> <span style="color:#95A3CF;font-size:23px;font-family:aBold;" id="nameWebsite">www.google.com</span>
+                                      <div align="center"><label id="lbl12"> ¿Are you sure take a screenshot this site?</label>
+<br> <span  id="nameWebsite">www.google.com</span>
                                       </div>
-                                    <div class="responsive" style="margin-top:15px;background-color: #95A3CF; width: 300px;height: 40px;padding:5px;cursor: pointer;" class="shadowButton" onclick="step(2);">
+                                    <div class="responsive" id="content14" class="shadowButton" onclick="step(2);">
                                          <table width="100%" height="100%">
                                              <tr>
                                                   <td valign="center" align="center">
-                                                      <label style="color:white;font-size:30px;font-family:aBold;line-height:0.9;cursor: pointer;">Take Screenshot
-                                         </label>
+                                                      <label id="lbl13">Take Screenshot          </label>
                                                   </td>
                                              </tr>
                                          </table>
                                     </div>
-                                    <div class="responsive" style="margin-top:15px;background-color: #95A3CF; width: 300px;height: 40px;padding:5px;cursor: pointer;" class="shadowButton" onclick="step(4);">
-                                      <div style="position:relative;width:100%;display:none;" id="withChanges">
-                                        <div style="position:absolute;right:-15px;top:-15px;background-color:red;border-radius:50%;width:30px;height:30px;" >
-                                        </div>
+                                    <div class="responsive" id="content15" class="shadowButton" onclick="step(4);">
+                                      <div  id="withChanges">
+                                      
                                       </div>
                                          <table width="100%" height="100%">
                                              <tr>
                                                   <td valign="center" align="center">
-                                                      <label style="color:white;font-size:30px;font-family:aBold;line-height:0.9;cursor: pointer;">More Settings
-                                         </label>
+                                                      <label id="lbl14">More Settings    </label>
                                                   </td>
                                              </tr>
                                          </table>
@@ -359,30 +339,30 @@
                           </tr>
                       </table>
                     </div>
-                    <div style="display:none;left:0px;top:20%;height:80%;width:100%;" align="center" id="firstStep">
+                    <div  align="center" id="firstStep">
                         <table width="100%" height="80%">
                             <tr>
                                     <td valign="top" align="center">
-                                        <div align="center" style="margin-top:10px;"><label style="color:#6B5A5F;font-size:20px;font-family:aRegular;line-height:0.9;cursor: pointer;" id="deviceProperties"> Please write the name of website</label></div>
-                                      <input id="domain" onkeyup="if(event.keyCode==13) $('#nxt').click(); " type="url" name="url" class="form-control" style="font-family:aRegular;text-align: center; height: 60px;font-size: 28px;text-transform: lowercase;max-width:500px;" placeholder=""  autocomplete="off" >
-                                      <div id="nxt" style="margin-top:15px;background-color: #95A3CF; width: 200px;height: 40px;padding:5px;cursor: pointer;margin-bottom:50px;max-width:500px;" class="responsive" onclick='  step(1);'>
+                                        <div align="center" class="m10"><label id="lbl15"> Please write the name of website</label></div>
+                                      <input id="domain" onkeyup="if(event.keyCode==13) $('#nxt').click(); " type="url" name="url" class="form-control"   autocomplete="off" >
+                                      <div id="nxt"  class="responsive" onclick='  step(1);'>
                                            <table width="100%" height="100%">
 
                                                <tr>
                                                     <td valign="center" align="center">
-                                                        <label style="color:white;font-size:30px;font-family:aBold;line-height:0.9;cursor: pointer;">Next
+                                                        <label id="lbl15" >Next
                                            </label>
                                                     </td>
                                                </tr>
                                            </table>
 
                                       </div>
-                                      <div style="width:80%;padding:5px;">
-                                          <label  style="color:#95A3CF;font-size:16px;font-family:aRegular;line-height:1.2;cursor: pointer;">
-                                          <div id="userSection" style="color:black;"></div>
-                                          <span id="textByPlan" onclick="upgradeShow();" style="line-height:0.9" ><br>.. </span><br>
+                                      <div id="content16">
+                                          <label  id="lbl16">
+                                          <div id="userSection" class="cb"></div>
+                                          <span id="textByPlan" onclick="upgradeShow();"><br>.. </span><br>
                                           <a href="mailto:hi@internetespoder.com" >
-                                              <small style="color:black;">Contact With us <br>hi@internetespoder.com</small>
+                                              <small class="cb">Contact With us <br>hi@internetespoder.com</small>
                                             </a>
 
                                         </label> 
@@ -395,25 +375,25 @@
                         </table>
                     </div>
        </div>
-    	<div style="position:absolute;left:0px;top:0px;height:100%;width:100%;" id="loadingPage">
+    	<div id="loadingPage">
     		<table width="100%" height="100%">
     				<tr>
     						<td valign="center" align="center">
-                                <label Style="color:#6B5A5F;font-size:28px;font-family:aBold;line-height:0.8;" onclick="loadPaymentData()">Easy ScreenShots</label>
+                                <label id="lbl17" onclick="loadPaymentData()">Easy ScreenShots</label>
                                 <br>
-                                <label Style="color:#95A3CF;font-size:33px;font-family:aBold;line-height:0.8;">Websites</label>
+                                <label id="lbl18">Websites</label>
                                 <br>
-                                <label Style="color:#95A3CF;font-size:23px;font-family:aItalic;line-height:0.8;">Version 1.0</label>
+                                <label id="lbl19">Version 1.0</label>
                                 <br><br>
     								<img src="x400.png" class="fadeinLogo responsiveLogos" width="200">
 
     								<br><br>
-    								<label Style="color:#6B5A5F;font-size:23px;font-family:aItalic;">Loading..</label>
+    								<label id="lbl20">Loading..</label>
     							</td>
     				</tr>
     		</table>
       </div>
-      <form name="frmu" action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank" style="margin-top:15px;">
+      <form name="frmu" action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank" >
         <input type="hidden" name="cmd" value="_xclick">
         <input type="hidden" name="business" value="navarreteje@gmail.com">
         <input type="hidden" name="item_name" value="Plan #1 ESW" id="item_name">
@@ -429,7 +409,7 @@
         <input type="hidden" name="cancel_return" id="falseProcess" value="">
         <input type="hidden" name="rm" value="2">
         <input type="hidden" name="cpp_header_image" value="https://internetespoder.com/apps/easyscreenshotswebsite/cdn/logo.png">        
-        <button  type="submit" class="btn btn-primary" name="submit" id="btnPaypal" style="display:none"> Pago</button>
+        <button  type="submit" class="btn btn-primary" name="submit" id="btnPaypal" > Pago</button>
 </form>
 <script type="text/javascript" src="js/main.js"></script>  
 <script> app.initialize(); </script>

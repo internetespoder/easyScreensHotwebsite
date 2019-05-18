@@ -468,17 +468,21 @@ var exitApp = false, intval = setInterval(function (){exitApp = false;}, 1000);
     }
 
 function upgradeShow(){   $("#upgradeFade").fadeIn(); }
-
+ 
 function upgrade(id){
      if(id==1){
           email=$.trim($("#emailUpgrade").val());
           if(validateEmail(email)){
+            $("#lGFree").css("display", "none");
+            $("#rBuy0").fadeIn();
              $.post("https://internetespoder.com/apps/easyscreenshotswebsite/cdn/upgrade.php",{
                 APPID:APPID, 
                 email:email,
                 plan:"FREE 90"
                 }).done(function(data){
                     alert(data);
+                    $("#lGFree").fadeIn();
+                    $("#rBuy0").css("display", "none");
                     location.reload(); 
                  });
          }else{
