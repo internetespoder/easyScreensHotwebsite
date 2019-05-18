@@ -6,3 +6,12 @@
       } 
 body{  overflow-x:hidden;background-color: rgba(232,233,234,0.7);display:none; }
 #upgradeFade{  display:none;background-color:#95A3CF;position:absolute;left:0px;top:0px;width:100%; height:auto;;z-index:99; }
+#headBlue{background-color:#95A3CF;padding:10px;position:relative;}
+#exitButton{position:absolute;font-size:35px;color:white;right:15px; top:5px; font-weight:bolder; font-family:aBold;}
+#contentGlobalShots{  color:white;font-size:25px;font-family: aBold; }
+.globalShots{font-size:35px;}
+#plus90Title{position:relative;}
+#firstTitle{  background-color:#222f3d;padding:5px;width:50%;position:absolute;left:25%;top:0px;z-index:999 !important;}
+#txt1{color:white;font-size:25px;font-family: aBold;}
+#plus90{background-color:white;padding:10px;position:relative;margin-top: 25px;}
+#txt2{color:black;font-size:25px;font-family: aRegular;padding-top:15px;}

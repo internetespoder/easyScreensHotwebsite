@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" style="">
+<html lang="en">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -18,31 +18,24 @@
     <link href="css/main.css" rel="stylesheet" type="text/css" />
     <script type="text/javascript" src="js/jquery-3.2.1.min.js" ></script>
     <script type="text/javascript" src="js/jquery-ui.min.js" ></script>
-
 	  <script type="text/javascript" src="cordova.js"></script>
 	</head>
-
     <body  onload="responsiveElements()" >
       <div id="upgradeFade" >
          <div id="head"> 
-            <div style="background-color:#95A3CF;padding:10px;position:relative;" align="center">
-              <div style="position:absolute;font-size:35px;color:white;right:15px; top:5px; font-weight:bolder; font-family:aBold;" onclick="$('#upgradeFade').css('display', 'none')">X</div>
-              <label style="color:white;font-size:25px;font-family: aBold;"> 
-                <span class="globalShots" style="font-size:35px;"> 0 </span> Images 
-              </label>
+            <div id="headBlue" align="center">
+              <div id="exitButton" onclick="$('#upgradeFade').css('display', 'none')" >X</div>
+              <label id="contentGlobalShots"> <span class="globalShots" > 0 </span> Images</label>
           </div>
-          <div style="position:relative" id="plus90Title">
-              <div style="background-color:#222f3d;padding:5px;width:50%;position:absolute;left:25%;top:0px;z-index:999 !important;" align="center">
-                  <label style="color:white;font-size:25px;font-family: aBold;"> FREE +50 Images </label>
+          <div id="plus90Title">
+              <div id="firstTitle" align="center">
+                  <label id="txt1"> FREE +50 Images </label>
               </div>
           </div>
-          <div id="plus90" style="background-color:white;padding:10px;position:relative;margin-top: 25px;" align="center">
-              <label style="color:black;font-size:25px;font-family: aRegular;padding-top:15px;" id="test"> 
-                Only with  Email 
-               <br>
-              </label>
+          <div id="plus90"  align="center">
+              <label  id="txt2"> Only with  Email<br></label>
                 <br><small style="font-family: aRegular;">Please write your email </small>
-                <input class="form-control" type="email" id="emailUpgrade" placeholder="Your email" style="width:80% !impotant; max-width:450px !important;height:50px;"  />
+                <input class="form-control" type="email" id="emailUpgrade" placeholder="Your email" style="width:80% !important; max-width:450px !important;height:50px;"  />
                <br>
                <div onclick="upgrade(1);" style="background-color:#95A3CF;padding:5px;display:inline-block;padding-left:15px;padding-right: 15px;" align="center">
                  <label style="color:white;font-size:25px;font-family: aBold;" status="0"> GET FREE </label>
@@ -58,7 +51,7 @@
   
           <div style="background-color:white;padding:10px;position:relative;" align="center">
                  
-            <label style="colorblack;font-size:25px;font-family: aRegular;padding-top:25px;line-height:0.9"> 
+            <label style="color:black;font-size:25px;font-family: aRegular;padding-top:25px;line-height:0.9"> 
               Basic Plan <br>
               1.00 USD <br>
             </label>
@@ -82,7 +75,7 @@
             </div>
         </div>
         <div style="background-color:white;padding:10px;position:relative;" align="center">  
-          <label style="colorblack;font-size:25px;font-family: aRegular;padding-top:25px;line-height:0.9"> 
+          <label style="color:black;font-size:25px;font-family: aRegular;padding-top:25px;line-height:0.9"> 
             Professional Plan <br>
             5.00 USD <br>
           </label>
@@ -121,7 +114,7 @@
 </div>
       </div>
        <div id="contentStep" style="display: none;width:100%;">
-                    <div id="header" style="position:relative;left:0px;top:0px;width:100%;padding-top:3px;b">
+                    <div id="header" style="position:relative;left:0px;top:0px;width:100%;padding-top:3px;">
                        <table width="100%" style="margin-top:0px;;">
                             <tbody><tr>
                                <td width="10%" align="left" valign="center"></td>
@@ -131,9 +124,9 @@
                                     <td width="20%" align="right" valign="top">
                                       <div style="width:80px;height:60px; padding-top:5px;" align="center" onclick="upgradeShow();">
                                         <img src="icon.png" width="60" class="" id="theIcon" style="margin-top:-5px;"/> <!--animated  bounceOut delay-2s -->
-                                      <div id="contShots" style="color:white;display:none;height:70px;width:80px;pading-top:10px;margin-top:7px;">
+                                      <div id="contShots" style="color:white;display:none;height:70px;width:80px;padding-top:10px;margin-top:7px;">
                                         <span style="font-size:35px;color:black;font-family:aBold;line-height:0.6;">
-                                          <b id="globalShots" style="">0</b> <br>
+                                          <b id="globalShots">0</b> <br>
                                           <label style="font-size:18px;color:#95A3CF;line-height:0.8;"> <span id="titlePlan">Free</span> Images</label> </span></div>
                                       <div id="upgrade" style="margin-top:8px;height:70px;width:80px;color:white;display:none;">
                                         <label style="color:black;font-size:20px;color:#95A3CF;font-family:aBold;line-height:0.8;">
