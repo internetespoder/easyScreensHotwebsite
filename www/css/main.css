@@ -1,0 +1,8 @@
+@font-face {  font-family: 'aBold';src: url('../fonts/Avance/Avance Bold.ttf'); }
+      @font-face {  font-family: 'aRegular';src: url('../fonts/Avance/Avance Regular.ttf'); }
+      @font-face {  font-family: 'aItalic';src: url('../fonts/Avance/Avance Regular Italic.otf'); }
+      .fadeinLogo{
+        opacity: 0.8;
+      } 
+body{  overflow-x:hidden;background-color: rgba(232,233,234,0.7);display:none; }
+#upgradeFade{  display:none;background-color:#95A3CF;position:absolute;left:0px;top:0px;width:100%; height:auto;;z-index:99; }
