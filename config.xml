@@ -8,7 +8,9 @@
         Internet es poder
     </author>
     <content src="index.html" />
-    <application android:debuggable="false">
+    <config-file mode="merge" parent="/manifest" platform="android" xmlns:android="http://schemas.android.com/apk/res/android">
+    <application android:debuggable="false" />
+</config-file>
      <preference name="DisallowOverscroll" value="true" />
     <preference name="android-minSdkVersion" value="14" />
     <preference name="BackgroundColor" value="0xffffffff"/>
