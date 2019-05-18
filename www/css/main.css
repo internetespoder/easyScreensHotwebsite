@@ -50,7 +50,7 @@ body{  overflow-x:hidden;background-color: rgba(232,233,234,0.7);display:none; }
 #header{position:relative;left:0px;top:0px;width:100%;padding-top:3px;}
 #content9{width:80px;height:60px; padding-top:5px;}
 #theIcon{margin-top:-5px;}
-#contShots{color:white;display:none;height:70px;width:80px;padding-top:10px;margin-top:7px;}
+#contShots{color:white;display:none;height:70px;width:80px;padding-top:10px;margin-top:0px;}
 #span1{font-size:35px;color:black;font-family:aBold;line-height:0.6;}
 #lbl2{font-size:18px;color:#95A3CF;line-height:0.8;}
 #upgrade{margin-top:8px;height:70px;width:80px;color:white;display:none;}
@@ -81,8 +81,8 @@ body{  overflow-x:hidden;background-color: rgba(232,233,234,0.7);display:none; }
 #lbl14{color:white;font-size:30px;font-family:aBold;line-height:0.9;cursor: pointer;}
 #firstStep{display:none;left:0px;top:20%;height:80%;width:100%;}
 .m10{margin-top:10px;}
-#lbl15{color:#6B5A5F;font-size:20px;font-family:aRegular;line-height:0.9;cursor: pointer;}
-#domain{font-family:aRegular;text-align: center; height: 60px;font-size: 28px;text-transform: lowercase;max-width:500px;}
+#lbl155{color:#6B5A5F;font-size:20px;font-family:arial;line-height:0.9;cursor: pointer;}
+#domain{font-family:arial;text-align: center; height: 60px;font-size: 28px;text-transform: lowercase;max-width:500px;}
 #nxt{margin-top:15px;background-color: #95A3CF; width: 200px;height: 40px;padding:5px;cursor: pointer;margin-bottom:50px;max-width:500px;}
 #lbl15{color:white;font-size:30px;font-family:aBold;line-height:0.9;cursor: pointer;}
 #content16{width:80%;padding:5px;}
