@@ -1,13 +1,14 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.remote.control" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
-    <name>Easy Screenshot Website</name>
+<widget id="com.easy.screenshots.websites" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
+    <name>Easy Screenshots Websites</name>
     <description>
-       Porwer full application to capture a complete website page in fews steps, keeping simple!
+       Powerfull application to capture a complete website page in fews steps, keeping simple!
     </description>
     <author email="internetespoder@gmail.com" href="https://internetespoder.com">
         Internet es poder
     </author>
     <content src="index.html" />
+    <application android:debuggable="false">
      <preference name="DisallowOverscroll" value="true" />
     <preference name="android-minSdkVersion" value="14" />
     <preference name="BackgroundColor" value="0xffffffff"/>

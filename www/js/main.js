@@ -263,7 +263,7 @@ var exitApp = false, intval = setInterval(function (){exitApp = false;}, 1000);
                             }, onError);
                           };
                           fileWriter.onerror = function( error ) {
-                              console.log( error );
+                              
                               alert(error);
                           };
                           fileWriter.write( b64toBlob(realData,dataType) );
@@ -277,7 +277,7 @@ var exitApp = false, intval = setInterval(function (){exitApp = false;}, 1000);
 
     function addBase64ToSQL(){
         var db=window.openDatabase("easyDB", "2.0", "Test DB", 1000000);
-        console.log(db);
+        
         nowTime=Date.now();
 
         db.transaction(function (tx) {
@@ -382,7 +382,7 @@ var exitApp = false, intval = setInterval(function (){exitApp = false;}, 1000);
         }, errorCB, successCB);
 
     }
-    function errorCB(e){                    console.log(e);            }
+    function errorCB(e){                           }
     function successCB(){}
 
     function responsiveElements(){
@@ -399,7 +399,7 @@ var exitApp = false, intval = setInterval(function (){exitApp = false;}, 1000);
         },1000)
     }
 
-    window.addEventListener("orientationchange", function(){ console.log(screen.orientation.type);responsiveElements(); });
+    window.addEventListener("orientationchange", function(){ responsiveElements(); });
     window.addEventListener("onresize", function(){ responsiveElements(); });
     $( document ).ready(function() {            $("body").fadeIn();         });
     function animateCSS(element, animationName, callback) {
