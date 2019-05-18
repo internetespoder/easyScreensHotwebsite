@@ -52,7 +52,7 @@
         <icon density="xxhdpi" src="www/icon.png" />
         <icon density="xxxhdpi" src="www/icon.png" />
         <splash density="land-ldpi" src="www/icon.png" />
-        <splash density="land-mdpi" src="www/res/screen/android/drawable-land-mdpi-screen.png" />
+        <splash density="land-mdpi" src="www/icon.png" />
         <splash density="land-hdpi" src="www/icon.png" />
         <splash density="land-xhdpi" src="www/icon.png" />
         <splash density="land-xxhdpi" src="www/icon.png" />
